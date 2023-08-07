@@ -43,3 +43,9 @@ button {
     font-family: 'Handjet', cursive;
     font-weight: 300;
 }
+
+bold {
+    background-color:gainsboro;
+    font-family: 'Arvo',sans-serif;
+    font-size: 16px;
+}
