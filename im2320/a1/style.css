@@ -1,0 +1,44 @@
+#Assign_1 {
+    font-size: x-large;
+    background-color: lightblue;
+    border: 3px double black;
+    width: 95%;
+    padding: 0.5%;
+}
+
+#outter_stripe {
+    align-items: center;
+    width : 100;
+    border: 1px solid black;
+    padding: 1%;
+    margin: 2%;
+}
+h3 {
+    font-family: 'Handjet', cursive;
+    font-size: x-large;
+    font-weight: 600;
+}
+
+/* .vl {
+    border-left: 3px solid lightgray;
+    height: 500%;
+    position:absolute;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;
+  } */
+
+div {
+    font-family: 'Handjet', cursive;
+    font-weight: 300;
+    align-items: center;
+    width: 95%;
+    border: 1px solid black;
+    padding: 1%;
+    margin: 1%;
+}
+
+button {
+    font-family: 'Handjet', cursive;
+    font-weight: 300;
+}
