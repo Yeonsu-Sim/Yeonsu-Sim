@@ -1,0 +1,25 @@
+
+
+* { /* Implemented to Every Element*/
+    box-sizing: border-box;
+    margin: 0;
+}
+
+:root {
+    --co101: rgb(0,0,0);
+    --co102: rgb(80,80,80);
+    --co103: rgb(160,160,160);
+    --co104: rgb(240,240,240);
+    --border: dotted 4px var(--co101);
+}
+
+h1 {
+    border: var(--border);
+    color: var(--co102);
+}
+
+h2 {
+    border: var(--border);
+    background-image: linear-gradient(var(--co102), var(--co103));
+    background-image: linear-gradient(to top right, cyan, palegoldenrod);
+}
