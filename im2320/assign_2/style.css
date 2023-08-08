@@ -13,6 +13,14 @@
     --border: dotted 4px var(--co101);
 }
 
+#backGround {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top right, cyan, violet, pink);
+}
+
 h1 {
     border: var(--border);
     color: var(--co102);
