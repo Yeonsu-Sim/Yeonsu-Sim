@@ -13,13 +13,110 @@
     --border: dotted 4px var(--co101);
 }
 
-#backGround {
-    z-index: -1;
+.canvas {
+    z-index: 1;
     position: absolute;
+    display: inline-block;
+    margin: 10%;
+    width: 400px;
+    height:600px;
+    border: none;
+    background-color: white;
+    /* background-color: antiquewhite; */
+}
+
+.section {
+    display: inherit;
+    width: 100%;
+    border: none;
+}
+
+.cut {
+    z-index: 1;
+}
+
+#sec1 {
+    height: 270px;
+    background-image: linear-gradient(to top right, yellow, violet, pink);
+}
+#sec2 {
+    height: 100px;
+    background-image: linear-gradient(to bottom right, cyan, violet, blue);
+}   
+#sec3 {
+    height: 230px;
+    background-image: linear-gradient(to top left, white 70%, lightblue, purple);
+}
+
+#cut1 {
+    width: 100px;
+    height: 170px;
+    float: left;
+    margin-left: 10px;
+}
+#cut2 {
+    width: 120px;
+    height: 130px;
+    float: left;
+    margin-left: 50px;
+}
+#cut3 {
+    width: 80px;
+    height: 250px;
+    float: right;
+}
+#cut4 {
+    z-index: 2;
+    position: absolute;
+    display: block;
+    margin-top: 130px;
+    margin-left: 0px;
+    width: 100px;
+    height: 120px;
+    background-color: pink;
+}
+#cut5 {
+    z-index: 2;
+    position: absolute;
+    display: block;
+    margin-top: 100px;
+    margin-left: 130px;
+    width: 130px;
+    height: 150px;
+    background-color: violet;
+
+}
+
+#cut6 {
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to top right, cyan, violet, pink);
 }
+
+#cut7{
+    z-index: 3;
+    display: inline-block;
+    position:absolute;
+    width: 130px;
+    height: 150px;
+    float: left;
+    margin-top: 70px;
+}
+#cut8{
+    display: inline-block;
+    width: 200px;
+    height: 150px;
+    float: left;
+    margin-left: 90px; 
+    margin-top: 20px;
+}
+#cut9 {
+    width: 100px;
+    height: 200px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
 
 h1 {
     border: var(--border);
@@ -30,4 +127,11 @@ h2 {
     border: var(--border);
     background-image: linear-gradient(var(--co102), var(--co103));
     background-image: linear-gradient(to top right, cyan, palegoldenrod);
+}
+
+div {
+    position:relative;
+    display:inline-block;
+    background-color: var(--co104);
+    border: 1px solid black;
 }
