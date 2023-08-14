@@ -15,14 +15,13 @@
 
 .canvas {
     z-index: 1;
-    position: absolute;
+    position:absolute;
     display: inline-block;
     margin: 10%;
     width: 400px;
     height:600px;
     border: none;
     background-color: white;
-    /* background-color: antiquewhite; */
 }
 
 .section {
@@ -37,7 +36,7 @@
 
 #sec1 {
     height: 270px;
-    background-image: linear-gradient(to top right, yellow, violet, pink);
+    background-image: radial-gradient(yellow, pink, white); background-color:
 }
 #sec2 {
     height: 100px;
@@ -45,7 +44,7 @@
 }   
 #sec3 {
     height: 230px;
-    background-image: linear-gradient(to top left, white 70%, lightblue, purple);
+    background-image: linear-gradient(to top left, white 50%, orchid 10%, royalblue);
 }
 
 #cut1 {
@@ -53,17 +52,23 @@
     height: 170px;
     float: left;
     margin-left: 10px;
+    background-image: repeating-radial-gradient(circle, cyan,white 60%,cyan,white);
+    border: 5px skyblue ridge;
 }
 #cut2 {
     width: 120px;
     height: 130px;
     float: left;
     margin-left: 50px;
+    background-image: repeating-linear-gradient(silver, linen, lightgreen, snow);
+    border: 4px gold double;
 }
 #cut3 {
     width: 80px;
     height: 250px;
     float: right;
+    background-image: radial-gradient(circle, snow,hotpink, snow, hotpink);
+    border: none;
 }
 #cut4 {
     z-index: 2;
@@ -73,7 +78,8 @@
     margin-left: 0px;
     width: 100px;
     height: 120px;
-    background-color: pink;
+    background-image: -webkit-repeating-linear-gradient(skyblue,pink,white);
+    border: none;
 }
 #cut5 {
     z-index: 2;
@@ -83,13 +89,17 @@
     margin-left: 130px;
     width: 130px;
     height: 150px;
-    background-color: violet;
-
+    background-image: repeating-linear-gradient(skyblue, pink, white);
+    border: 7px pink groove;
+    border-top: 7px linen ridge;
+    border-bottom: 7px linen ridge;
 }
 
 #cut6 {
     width: 100%;
     height: 100%;
+    background-image: repeating-linear-gradient(plum,lightblue);
+    border: 5px oldlace groove;
 }
 
 #cut7{
@@ -99,7 +109,8 @@
     width: 130px;
     height: 150px;
     float: left;
-    margin-top: 70px;
+    margin-top: 80px;
+    background-color: rgb(100,123,230,0.5);
 }
 #cut8{
     display: inline-block;
@@ -107,16 +118,26 @@
     height: 150px;
     float: left;
     margin-left: 90px; 
-    margin-top: 20px;
+    margin-top: 30px;
+    background-color: rgb(100, 123, 230, 0.5);
+    background-image: repeating-radial-gradient(snow,cornflowerblue, white);
 }
 #cut9 {
     width: 100px;
     height: 200px;
     float: left;
     margin-left: 10px;
-    margin-top: 20px;
+    margin-top: 30px;
+    background-color: rgb(100,123,230,0.5);
 }
 
+#ref {
+    position:relative;
+    display:inline-block; 
+    float: right;
+    width:300px; 
+    margin-top: 10%;
+}
 
 h1 {
     border: var(--border);
