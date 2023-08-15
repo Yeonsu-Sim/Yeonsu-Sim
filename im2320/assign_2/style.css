@@ -18,77 +18,76 @@
     position:absolute;
     display: inline-block;
     margin: 10%;
-    width: 400px;
-    height:600px;
+    width: 80%;
     border: none;
     background-color: white;
+    background-color: green;
 }
 
 .section {
-    display: inherit;
+    display: absolute;
     width: 100%;
     border: none;
 }
 
 .cut {
+    display: absolute;
     z-index: 1;
 }
 
 #sec1 {
+    display: flex;
     height: 270px;
-    background-image: radial-gradient(yellow, pink, white); background-color:
+    background-image: radial-gradient(yellow, pink, white);
 }
 #sec2 {
+    display: flex;
     height: 100px;
     background-image: linear-gradient(to bottom right, cyan, violet, blue);
 }   
 #sec3 {
+    display: flex;
     height: 230px;
     background-image: linear-gradient(to top left, white 50%, orchid 10%, royalblue);
 }
 
 #cut1 {
-    width: 100px;
-    height: 170px;
-    float: left;
-    margin-left: 10px;
+    width: 25%;
+    height: 65%;
+    margin-left: 2%;
     background-image: repeating-radial-gradient(circle, cyan,white 60%,cyan,white);
     border: 5px skyblue ridge;
 }
 #cut2 {
-    width: 120px;
-    height: 130px;
-    float: left;
-    margin-left: 50px;
+    width: 28%;
+    height: 50%;
+    margin-left: 15%;
     background-image: repeating-linear-gradient(silver, linen, lightgreen, snow);
     border: 4px gold double;
 }
 #cut3 {
-    width: 80px;
-    height: 250px;
-    float: right;
+    width: 20%;
+    height: 95%;
+    margin-left:10%;
     background-image: radial-gradient(circle, snow,hotpink, snow, hotpink);
     border: none;
 }
 #cut4 {
     z-index: 2;
     position: absolute;
-    display: block;
-    margin-top: 130px;
-    margin-left: 0px;
-    width: 100px;
-    height: 120px;
+    width: 25%;
+    height: 45%;
+    top: 50%;
     background-image: -webkit-repeating-linear-gradient(skyblue,pink,white);
     border: none;
 }
 #cut5 {
     z-index: 2;
     position: absolute;
-    display: block;
-    margin-top: 100px;
-    margin-left: 130px;
-    width: 130px;
-    height: 150px;
+    width: 30%;
+    height: 55%;
+    top: 40%;
+    left: 35%;
     background-image: repeating-linear-gradient(skyblue, pink, white);
     border: 7px pink groove;
     border-top: 7px linen ridge;
@@ -104,39 +103,29 @@
 
 #cut7{
     z-index: 3;
-    display: inline-block;
     position:absolute;
-    width: 130px;
-    height: 150px;
-    float: left;
-    margin-top: 80px;
+    width: 28%;
+    height: 65%;
+    top: 35%;
     background-color: rgb(100,123,230,0.5);
 }
 #cut8{
-    display: inline-block;
-    width: 200px;
-    height: 150px;
-    float: left;
-    margin-left: 90px; 
-    margin-top: 30px;
+    position:absolute;
+    width: 45%;
+    height: 65%;
+    left: 20%;
+    top: 10%;
     background-color: rgb(100, 123, 230, 0.5);
     background-image: repeating-radial-gradient(snow,cornflowerblue, white);
 }
 #cut9 {
-    width: 100px;
-    height: 200px;
+    position:absolute;
+    width: 25%;
+    height: 90%;
     float: left;
-    margin-left: 10px;
-    margin-top: 30px;
+    top: 10%;
+    right: 0%;
     background-color: rgb(100,123,230,0.5);
-}
-
-#ref {
-    position:relative;
-    display:inline-block; 
-    float: right;
-    width:300px; 
-    margin-top: 10%;
 }
 
 h1 {
