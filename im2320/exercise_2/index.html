@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="./filter.js" defer></script>
+
+    <title>Patrick's exercise 2</title>
+
+  </head>
+
+  <body>
+
+    <div>Interactive Media 1 Recipe List</div>
+
+    <hr /> 
+
+    <div class="FilterSection">     
+
+      <details class="FilterBox">
+        <summary>Author</summary>
+        <button class="FilterButton" onclick='filterRecipes("author", "KLA", this)'>J. Kenji López-Alt</button>
+        <button class="FilterButton" onclick='filterRecipes("author", "M", this)'>Maangchi</button>
+        <button class="FilterButton" onclick='filterRecipes("author", "HM", this)'>Hetty McKinnon</button>
+        <button class="FilterButton" onclick='filterRecipes("author", "CLM", this)'>Carla Lalli Music</button>
+        <button class="FilterButton" onclick='resetFilter()'>ALL Authors</button>
+      </details>
+
+      <!-- I think -->
+      <details class="FilterBox">
+        <summary>Dietary</summary>
+        <button class="FilterButton" onclick='filterRecipes("dietary", "Vegetarian", this)'>Vegetarian</button>
+        <button class="FilterButton" onclick='filterRecipes("dietary", "Meat based", this)'>Meat based</button>
+        <button class="FilterButton" onclick='filterRecipes("dietary", "Pescatarian", this)'>Pescatarian</button>
+        <button class="FilterButton" onclick='resetFilter()'>ALL Dietary</button>
+      </details>
+
+      <details class="FilterBox">
+        <summary>Course</summary>
+        <button class="FilterButton" onclick='filterRecipes("course", "Main", this)'>Main</button>
+        <button class="FilterButton" onclick='filterRecipes("course", "Side", this)'>Sidebased</button>
+        <button class="FilterButton" onclick='filterRecipes("course", "Dessert", this)'>Dessert</button>
+        <button class="FilterButton" onclick='resetFilter()'>ALL Course</button>
+      </details>
+
+      <details class="FilterBox">
+        <summary>Skill Level</summary>
+        <button class="FilterButton" onclick='filterRecipes("skilllevel", "Low", this)'>Low</button>
+        <button class="FilterButton" onclick='filterRecipes("skilllevel", "Medium", this)'>Medium</button>
+        <button class="FilterButton" onclick='filterRecipes("skilllevel", "High", this)'>High</button>
+        <button class="FilterButton" onclick='resetFilter()'>ALL Skill Levels</button>
+      </details>
+
+    </div>
+
+    <hr /> 
+
+    <!-- Recipe 1 -->
+    <!-- these are fine to leave as <div>s -->
+    <div class="RecipeBox"
+         data-author="HM"
+         data-skilllevel="Low"
+         data-dietary="Vegetarian"
+         data-course="Main"
+    >
+    <!-- 
+      the above tag already has one custom data category called author - to get the filter to work with other catgories you'll need
+      to add in more data- attributes. see the link on modules for more details but remember you can call it whatever you like as 
+      long as it doesn't contain any capital letters
+    -->
+
+      <!-- don't forget to change out <div>s for the most appropriate element -->
+      <!-- i'll give you one for free - you should change the URL into an <a> tag, don't forget to add the appropriate attributes so it works as a link -->
+      <div class="RecipeLink">URL: https://www.abc.net.au/everyday/baked-puttanesca-risotto-with-tomato-olives-lemon-parsley-recipe/11270338</div>
+
+      <div class="RecipeName">Recipe Name: Baked Puttanesca Risotto with Olives, Lemon and Parsley</div>
+
+      <div class="Author">Author: Hetty Mckinnon</div>
+      
+      <!-- the RecipeImageContainer is actually fine to be left as a <div> - like the RecipeBox we're using it as a container for other elements -->
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Puttanesca.jpg" alt="bowl of puttanesca pasta" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/10559879@N00/5996763901">Spaghetti Puttanesca con Tonno</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/10559879@N00">avlxyz</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=openverse">
+            CC BY-NC-SA 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p>
+
+      </div>
+
+      <div class="Publisher">Publisher: ABC Everyday</div>
+
+      <div class="Cuisine">Cuisine: Italian</div>
+
+      <div class="TimeToCook">Time to Cook: 0:10 prep time - 0:30 cook time</div>
+
+      <div class="SkillLevel">Skill Level: Low</div>
+
+      <div class="Course">Course: Main</div>
+
+      <div class="Servings">Servings: 4 to 6</div>
+
+      <div class="Dietary">Dietary: Vegetarian</div>
+
+      <div class="DatePublished">Date Published: 3 Jul 2019</div>
+
+      <div class="DateUpdated">Date Updated: 29 Jul 2019</div>
+
+      <div class="SpecialEquipment">Special Equipment: Ovenproof Dutch oven</div>
+
+    </div>
+    
+    <!-- Recipe 2 -->
+    <div class="RecipeBox"
+         data-author="HM"
+         data-skilllevel="Low"
+         data-dietary="Vegetarian"
+         data-course="Side"
+    >
+
+      <div class="RecipeLink">URL: https://www.abc.net.au/everyday/caprese-salad-slow-roasted-tomato-rocket-basil-gremolata-recipe/10776846</div>
+
+      <div class="RecipeName">Recipe Name: Caprese Salad with Slow-Roasted Tomatoes, Rocket and Basil Gremolata</div>
+
+      <div class="Author">Author: Hetty Mckinnon</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Caprese.jpg" alt="plate of caprese salad" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/25597828@N00/4254859304">Caprese Salad</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/25597828@N00">wEnDaLicious</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-nd-nc/2.0/jp/?ref=openverse">
+            CC BY-NC-ND 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p>
+
+      </div>
+
+      <div class="Publisher">Publisher: ABC Everyday</div>
+      
+      <div class="Cuisine">Cuisine: Italian</div>
+
+      <div class="TimeToCook">Time to Cook: 75-105 mins</div>
+
+      <div class="SkillLevel">Skill Level: Low</div>
+
+      <div class="Course">Course: Salad</div>
+
+      <div class="Servings">Servings: ?</div>
+
+      <div class="Dietary">Dietary: Vegetarian</div>
+
+      <div class="DatePublished">Date Published: 4 Feb 2019</div>
+
+      <div class="DateUpdated">Date Updated: 17 Dec 2020</div>
+
+      <div class="SpecialEquipment">Special Equipment: N/A</div>
+
+    </div>
+    
+    <!-- Recipe 3 -->
+    <div class="RecipeBox"
+         data-author="KLA"
+         data-skilllevel="Medium"
+         data-dietary="Vegetarian"
+         data-course="Side"
+    >
+
+      <div class="RecipeLink">URL: https://www.seriouseats.com/crispy-enoki-and-onion-fritter-with-thai-curry-mayo-recipe</div>
+
+      <div class="RecipeName">Recipe Name: Crispy Enoki and Onion Fritters with Thai Curry Mayo Recipe</div>
+
+      <div class="Author">Author: J. Kenji López-Alt</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Enoki.jpg" alt="enoki mushrooms" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/48600074651@N01/107148202">brown enoki mushrooms</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/48600074651@N01">chotda</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-nd-nc/2.0/jp/?ref=openverse">
+            CC BY-NC-ND 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p> 
+
+      </div>
+
+      <div class="Publisher">Publisher: Serious Eats</div>
+
+      <div class="Cuisine">Cuisine: Fusion</div>
+
+      <div class="TimeToCook">Time to Cook: 30 mins</div>
+
+      <div class="SkillLevel">Skill Level: Medium</div>
+
+      <div class="Course">Course: Snack, Savoury</div>
+
+      <div class="Servings">Servings: 4 to 6</div>
+
+      <div class="Dietary">Dietary: Vegetarian</div>
+
+      <div class="DatePublished">Date Published: Oct. 9, 2012</div>
+
+      <div class="DateUpdated">Date Updated: Aug. 30, 2018</div>
+
+      <div class="SpecialEquipment">Special Equipment: </div>
+
+    </div>
+    
+    <!-- Recipe 4 -->
+    <div class="RecipeBox"
+         data-author="M"
+         data-skilllevel="Medium"
+         data-dietary="Vegetarian"
+         data-course="Dessert"
+    >
+
+      <div class="RecipeLink">URL: https://www.maangchi.com/recipe/jjinppang</div>
+
+      <div class="RecipeName">Recipe Name: Fluffy Steamed Buns filled with Sweet Red Beans</div>
+
+      <div class="Author">Author: Maangchi</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Red_Bean_Bun.jpg" alt="ripped open steamed bun with red bean paste" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/10559879@N00/33435831771">Sweet red bean bun 豆沙包 AUD2 - Wing Loong, Melbourne</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/10559879@N00">avlxyz</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/2.0/?ref=openverse">
+            CC BY-NC 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p>
+
+      </div>
+
+      <div class="Publisher">Publisher: Maangchi</div>
+
+      <div class="Cuisine">Cuisine: Korean</div>
+
+      <div class="TimeToCook">Time to Cook: ~ 11 hours preperation. 15 mins to cook</div>
+
+      <div class="SkillLevel">Skill Level: Medium</div>
+
+      <div class="Course">Course: Snack, Sweet</div>
+
+      <div class="Servings">Servings: 10 pieces</div>
+
+      <div class="Dietary">Dietary: Vegetarian</div>
+
+      <div class="DatePublished">Date Published: December 19, 2017</div>
+
+      <div class="DateUpdated">Date Updated: August 11, 2021</div>
+
+      <div class="SpecialEquipment">Special Equipment: </div>
+
+    </div>
+    
+    <!-- Recipe 5 -->
+    <div class="RecipeBox"
+         data-author="KLA"
+         data-skilllevel="Low"
+         data-dietary="Vegetarian"
+         data-course="Dessert"
+    >
+
+      <div class="RecipeLink">URL: https://www.seriouseats.com/the-food-lab-best-chocolate-chip-cookie-recipe</div>
+
+      <div class="RecipeName">Recipe Name: The Food Lab's Chocolate Chip Cookies</div>
+
+      <div class="Author">Author: J. Kenji López-Alt</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Cookies.jpg" alt="plate of chocolate chip cookies" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/70757891@N00/7133349441">Browned butter chocolate chip cookies</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/70757891@N00">grongar</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by/2.0/?ref=openverse">
+            CC BY 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p>
+
+      </div>
+
+      <div class="Publisher">Publisher: Serious Eats</div>
+
+      <div class="Cuisine">Cuisine: Western</div>
+
+      <div class="TimeToCook">Time to Cook: 45mins prep. 35mins to cook</div>
+
+      <div class="SkillLevel">Skill Level: Low</div>
+
+      <div class="Course">Course: Snack, Sweet</div>
+
+      <div class="Servings">Servings: 28 cookies</div>
+
+      <div class="Dietary">Dietary: Vegetarian</div>
+
+      <div class="DatePublished">Date Published: Dec. 20, 2013</div>
+
+      <div class="DateUpdated">Date Updated: Sep. 16, 2022</div>
+
+      <div class="SpecialEquipment">Special Equipment: </div>
+
+    </div>
+    
+    <!-- Recipe 6 -->
+    <div class="RecipeBox"
+         data-author="KLA"
+         data-skilllevel="Low"
+         data-dietary="Vegetarian"
+         data-course="Side"
+    >
+
+      <div class="RecipeLink">URL: https://www.seriouseats.com/grilled-cheese-with-kimchi-recipe</div>
+
+      <div class="RecipeName">Recipe Name: Grilled Cheese With Kimchi Recipe</div>
+
+      <div class="Author">Author: J. Kenji López-Alt</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Grilled_Cheese.jpg" alt="grilled cheese sandwich with pickles" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/85508296@N00/8340994832">Lefty’s Food Truck</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/85508296@N00">cherrylet</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=openverse">
+            CC BY-NC-SA 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p>
+
+      </div>
+
+      <div class="Publisher">Publisher: Serious Eats</div>
+
+      <div class="Cuisine">Cuisine: Fusion</div>
+
+      <div class="TimeToCook">Time to Cook: 12 mins</div>
+
+      <div class="SkillLevel">Skill Level: Low</div>
+
+      <div class="Course">Course: Snack, Savoury</div>
+
+      <div class="Servings">Servings: 1 sandwich</div>
+
+      <div class="Dietary">Dietary: Vegetarian</div>
+
+      <div class="DatePublished">Date Published: Apr. 28, 2013</div>
+
+      <div class="DateUpdated">Date Updated: Sep. 21, 2022</div>
+
+      <div class="SpecialEquipment">Special Equipment: </div>
+
+    </div>
+    
+    <!-- Recipe 7 -->
+    <div class="RecipeBox"
+         data-author="CLM"
+         data-skilllevel="Medium"
+         data-dietary="Meat based"
+         data-course="Main"
+    >
+
+      <div class="RecipeLink">URL: https://www.patreon.com/posts/recipe-hands-off-60369279</div>
+
+      <div class="RecipeName">Recipe Name: Hands-Off Pork and Beans</div>
+
+      <div class="Author">Author: Carla Lalli Music</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Pork_Beans.jpg" alt="pot of pork and beans" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/22798667@N00/6158931731">spicy pork and bean chili</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/22798667@N00">telepathicparanoia</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-nd/2.0/?ref=openverse">
+            CC BY-ND 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p> 
+
+      </div>
+
+      <div class="Publisher">Publisher: Carla Lalli Music</div>
+
+      <div class="Cuisine">Cuisine: American</div>
+
+      <div class="TimeToCook">Time to Cook: overnight preperation. 4 hours to cook</div>
+
+      <div class="SkillLevel">Skill Level: Medium</div>
+
+      <div class="Course">Course: Main</div>
+
+      <div class="Servings">Servings: 6 generous servings</div>
+
+      <div class="Dietary">Dietary: Meat based</div>
+
+      <div class="DatePublished">Date Published: Dec 28, 2021</div>
+
+      <div class="DateUpdated">Date Updated: N/A</div>
+
+      <div class="SpecialEquipment">Special Equipment: </div>
+
+    </div>
+    
+    <!-- Recipe 8 -->
+    <div class="RecipeBox"
+         data-author="M"
+         data-skilllevel="Low"
+         data-dietary="Vegetarian"
+         data-course="Side"
+    >
+
+      <div class="RecipeLink">URL: https://www.maangchi.com/recipe/kimchijeon</div>
+
+      <div class="RecipeName">Recipe Name: Kimchi Pancake</div>
+
+      <div class="Author">Author: Maangchi</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Kimchi_Pancake.jpg" alt="kimchi pancake with bowl of dipping sauce" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://commons.wikimedia.org/w/index.php?curid=54768084">File:Kimchibuchimgae (kimchi pancake).jpg</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://pixabay.com/ko/users/sharonang-99559/">sharonang</a> is marked with 
+          <a target="_blank" rel="noopener noreferrer" href="http://creativecommons.org/publicdomain/zero/1.0/deed.en?ref=openverse">
+            CC0 1.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/zero.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p>
+
+      </div>
+
+      <div class="Publisher">Publisher: Maangchi</div>
+
+      <div class="Cuisine">Cuisine: Korean</div>
+
+      <div class="TimeToCook">Time to Cook: 15mins</div>
+
+      <div class="SkillLevel">Skill Level: Low</div>
+
+      <div class="Course">Course: Snack, Savoury</div>
+
+      <div class="Servings">Servings: 8 slices</div>
+
+      <div class="Dietary">Dietary: Vegetarian</div>
+
+      <div class="DatePublished">Date Published: February 27th, 2020</div>
+
+      <div class="DateUpdated">Date Updated: August 1, 2021</div>
+
+      <div class="SpecialEquipment">Special Equipment: </div>
+
+    </div>
+    
+    <!-- Recipe 9 -->
+    <div class="RecipeBox"
+         data-author="KLA"
+         data-skilllevel="Medium"
+         data-dietary="Vegetarian"
+         data-course="Main"
+    >
+
+      <div class="RecipeLink">URL: https://www.seriouseats.com/shakshuka-north-african-shirred-eggs-tomato-pepper-recipe</div>
+
+      <div class="RecipeName">Recipe Name: Shakshuka (North African–Style Poached Eggs in Spicy Tomato Sauce)</div>
+
+      <div class="Author">Author: J. Kenji López-Alt</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Shakshuka.jpg" alt="pan filled with shakshuka" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/33993074@N00/14288893837">Shakshuka</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/33993074@N00">joyosity</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by/2.0/?ref=openverse">
+            CC BY 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p>
+
+      </div>
+
+      <div class="Publisher">Publisher: Serious Eats</div>
+
+      <div class="Cuisine">Cuisine: North African</div>
+
+      <div class="TimeToCook">Time to Cook: 35 mins</div>
+
+      <div class="SkillLevel">Skill Level: Medium</div>
+
+      <div class="Course">Course: Main</div>
+
+      <div class="Servings">Servings: 4 to 6</div>
+
+      <div class="Dietary">Dietary: Vegetarian</div>
+
+      <div class="DatePublished">Date Published: Sep. 28, 2016</div>
+
+      <div class="DateUpdated">Date Updated: Aug. 10, 2022</div>
+
+      <div class="SpecialEquipment">Special Equipment: </div>
+
+    </div>
+    
+    <!-- Recipe 10 -->
+    <div class="RecipeBox"
+         data-author="CLM"
+         data-skilllevel="Low"
+         data-dietary="Pescatarian"
+         data-course="Main"
+    >
+
+      <div class="RecipeLink">URL: https://www.patreon.com/posts/pasta-with-sauce-45042575</div>
+
+      <div class="RecipeName">Recipe Name: Spaghetti with Melted Cauliflower Sauce</div>
+
+      <div class="Author">Author: Carla Lalli Music</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Cauliflower_Spaghetti.jpg" alt="bowl of spaghettie with cauliflower sauce" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/35468144810@N01/6240477142">Spaghetti with Cauliflower and Anchovy Breadcrumbs</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/35468144810@N01">Girl Interrupted Eating</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by/2.0/?ref=openverse">
+            CC BY 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p>
+
+      </div>
+
+      <div class="Publisher">Publisher: Carla Lalli Music</div>
+
+      <div class="Cuisine">Cuisine: Italian</div>
+
+      <div class="TimeToCook">Time to Cook: 1 hour and 10 minutes</div>
+
+      <div class="SkillLevel">Skill Level: Low</div>
+
+      <div class="Course">Course: Main</div>
+
+      <div class="Servings">Servings: 4 servings</div>
+
+      <div class="Dietary">Dietary: Pescatarian</div>
+
+      <div class="DatePublished">Date Published: Dec 16, 2020</div>
+
+      <div class="DateUpdated">Date Updated: N/A</div>
+
+      <div class="SpecialEquipment">Special Equipment: </div>
+
+    </div>
+    
+    <!-- Recipe 11 -->
+    <div class="RecipeBox"
+         data-author="M"
+         data-skilllevel="Medium"
+         data-dietary="Meat based"
+         data-course="Main"
+    >
+
+      <div class="RecipeLink">URL: https://www.maangchi.com/recipe/yangnyeom-tongdak</div>
+
+      <div class="RecipeName">Recipe Name: Sweet, Sour, & Spicy Korean Fried Chicken</div>
+
+      <div class="Author">Author: Maangchi</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Korean_Fried_Chicken.jpg" alt="plate of fried chicken with pickles and kimchi" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/40726522@N02/8563518350">Bon Chon Korean Fried Chicken Wings</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/40726522@N02">powerplantop</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-nd-nc/2.0/jp/?ref=openverse">
+            CC BY-NC-ND 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p> 
+
+      </div>
+
+      <div class="Publisher">Publisher: Maangchi</div>
+
+      <div class="Cuisine">Cuisine: Korean</div>
+
+      <div class="TimeToCook">Time to Cook: 45-50 minutes</div>
+
+      <div class="SkillLevel">Skill Level: Medium</div>
+
+      <div class="Course">Course: Main</div>
+
+      <div class="Servings">Servings: 3 to 4</div>
+
+      <div class="Dietary">Dietary: Meat based</div>
+
+      <div class="DatePublished">Date Published: January 27th, 2011</div>
+
+      <div class="DateUpdated">Date Updated: August 3, 2021</div>
+
+      <div class="SpecialEquipment">Special Equipment: </div>
+
+    </div>
+    
+    <!-- Recipe 12 -->
+    <div class="RecipeBox"
+         data-author="KLA"
+         data-skilllevel="Medium"
+         data-dietary="Meat based"
+         data-course="Main"
+    >
+
+      <div class="RecipeLink">URL: https://www.seriouseats.com/ultimate-beef-stroganof-recipe</div>
+
+      <div class="RecipeName">Recipe Name: The Ultimate Beef Stroganoff Recipe</div>
+
+      <div class="Author">Author: J. Kenji López-Alt</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Stroganoff.jpg" alt="bowl of beef stroganoff pasta" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/66606673@N00/4597118575">Beef Stroganoff</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/66606673@N00">cobalt123</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/2.0/?ref=openverse">
+            CC BY-NC-SA 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p>
+
+      </div>
+
+      <div class="Publisher">Publisher: Serious Eats</div>
+
+      <div class="Cuisine">Cuisine: Russian</div>
+
+      <div class="TimeToCook">Time to Cook: 55 mins</div>
+
+      <div class="SkillLevel">Skill Level: Medium</div>
+
+      <div class="Course">Course: Main</div>
+
+      <div class="Servings">Servings: 4 servings</div>
+
+      <div class="Dietary">Dietary: Meat based</div>
+
+      <div class="DatePublished">Date Published: Jan. 9, 2015</div>
+
+      <div class="DateUpdated">Date Updated: Aug. 27, 2020</div>
+
+      <div class="SpecialEquipment">Special Equipment: </div>
+
+    </div>
+    
+    <!-- Recipe 13 -->
+    <div class="RecipeBox"
+         data-author="CLM"
+         data-skilllevel="Medium"
+         data-dietary="Vegetarian"
+         data-course="Dessert"
+    >
+
+      <div class="RecipeLink">URL: https://www.patreon.com/posts/recipe-vanilla-60100711</div>
+
+      <div class="RecipeName">Recipe Name: Vanilla-Brown Butter Pear Tart</div>
+
+      <div class="Author">Author: Carla Lalli Music</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Pear_Tart.jpg" alt="pear tart on a table" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/37829433@N03/4711738063">Tarte Amandines aux Poires - Almond-Pear Tart 0205-1550</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/37829433@N03">Eat my Cake now</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-nd-nc/2.0/jp/?ref=openverse">
+            CC BY-NC-ND 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p>
+
+      </div>
+
+      <div class="Publisher">Publisher: Carla Lalli Music</div>
+
+      <div class="Cuisine">Cuisine: French</div>
+
+      <div class="TimeToCook">Time to Cook: ~ 3 hours</div>
+
+      <div class="SkillLevel">Skill Level: Medium</div>
+
+      <div class="Course">Course: Dessert</div>
+
+      <div class="Servings">Servings: 8 servings</div>
+
+      <div class="Dietary">Dietary: Vegetarian</div>
+
+      <div class="DatePublished">Date Published: Dec 20, 2021</div>
+
+      <div class="DateUpdated">Date Updated: N/A</div>
+
+      <div class="SpecialEquipment">Special Equipment: Bench scraper, tart pan</div>
+
+    </div>
+
+    <!-- Recipe 14 -->
+    <div class="RecipeBox"
+         data-author="HM"
+         data-skilllevel="Low"
+         data-dietary="Vegetarian"
+         data-course="Main"
+    >
+
+      <div class="RecipeLink">URL: https://www.abc.net.au/everyday/vegetarian-carbonara-with-mushrooms-and-miso/12426392</div>
+
+      <div class="RecipeName">Recipe Name: Vegetarian Carbonara with Mushrooms, Miso and Parmesan</div>
+
+      <div class="Author">Author: Hetty Mckinnon</div>
+
+      <div class="RecipeImageContainer">
+
+        <img class="RecipeImg" src="./images/Mushroom_Carbonara.jpg" alt="pan filled with mushroom carbonara pasta" />
+
+        <p class="Attribution">
+          "<a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/22508531@N08/49471971493">Mushroom carbonara</a>" by 
+          <a target="_blank" rel="noopener noreferrer" href="https://www.flickr.com/photos/22508531@N08">Like_the_Grand_Canyon</a> is licensed under 
+          <a target="_blank" rel="noopener noreferrer" href="https://creativecommons.org/licenses/by-nc/2.0/?ref=openverse">
+            CC BY-NC 2.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+            <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" style="height: 1em; margin-right: 0.125em; display: inline;"></img>
+          </a>
+        </p>
+
+      </div>
+
+      <div class="Publisher">Publisher: ABC Everday</div>
+
+      <div class="Cuisine">Cuisine: Fusion</div>
+
+      <div class="TimeToCook">Time to Cook: 0:15 prep time - 0:15 cook time</div>
+
+      <div class="SkillLevel">Skill Level: Low</div>
+
+      <div class="Course">Course: Main</div>
+
+      <div class="Servings">Servings: 4</div>
+
+      <div class="Dietary">Dietary: Vegetarian</div>
+
+      <div class="DatePublished">Date Published: 9 Jul 2020</div>
+
+      <div class="DateUpdated">Date Updated: 26 Feb 2021</div>
+
+      <div class="SpecialEquipment">Special Equipment: </div>
+
+    </div>
+
+    </section>
+
+  </body>
+
+</html>

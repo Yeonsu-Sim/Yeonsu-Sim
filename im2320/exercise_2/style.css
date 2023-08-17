@@ -1,0 +1,122 @@
+/* z-index order */
+
+*{
+  box-sizing: border-box;
+  background-origin: border-box;
+  margin: 0;
+}
+
+/* Basis for colour palette comes from 1bit Monitor Glow Palette by Polyducks */
+/* https://lospec.com/palette-list/1bit-monitor-glow */
+/* you're welcome to change the colours if you want or any of the other general page style */
+:root{
+  --col-01:#222323;
+  --col-02:#f0f6f0;
+  --col-03:#5252ff;
+  --col-04:#b6e878;
+  --border: 1px solid var(--col-02);
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--col-01);
+  color: var(--col-02);
+  padding: 2vw;
+}
+
+/*
+  i've set up a basic flexbox for each recipe container - you might want to change some of the 
+  flex properties here on the container or on the individual flex items depending on how you want to style them
+*/
+.RecipeBox{
+  display: flex;
+  flex-direction: column;
+  border: var(--border);
+}
+
+.FilterSection{
+
+}
+
+.FilterBox{
+
+}
+
+.FilterButton{
+
+}
+/* 
+  this class will be applied to the last filter button clicked - remember because it's below .FilterButton it will overwrite
+  any duplicate properties
+*/
+.SelectedFilter{
+  background-color: red;
+}
+
+.RecipeLink{
+
+}
+
+.RecipeName{
+  color: yellow;
+
+}
+
+.Author{
+  background-color: red;
+}
+
+.RecipeImageContainer{
+
+}
+
+.RecipeImg{
+
+}
+
+.Attribution{
+
+}
+
+.Publisher{
+
+}
+
+.Cuisine{
+
+}
+
+.TimeToCook{
+  color: magenta;
+
+}
+
+.SkillLevel{
+
+}
+
+.Course{
+
+}
+
+.Servings{
+
+}
+
+.Dietary{
+
+}
+
+.DatePublished{
+
+}
+
+.DateUpdated{
+
+}
+
+.SpecialEquipment{
+
+}
+
