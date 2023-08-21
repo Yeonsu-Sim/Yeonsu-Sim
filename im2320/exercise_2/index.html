@@ -16,11 +16,11 @@
 
   <body>
 
-    <div>Interactive Media 1 Recipe List</div>
+    <div style="display: inline-block; width:100%;">Interactive Media 1 Recipe List</div>
 
-    <hr /> 
 
     <div class="FilterSection">     
+      <hr /><div style="height:2%;"></div>
 
       <details class="FilterBox">
         <summary>Author</summary>
@@ -31,7 +31,7 @@
         <button class="FilterButton" onclick='resetFilter()'>ALL Authors</button>
       </details>
 
-      <!-- I think -->
+      <!-- Since web pages can be visited by various people from all over the world, I hoped they can easily filtering by dietary which they pursue for religious reasons and so on. -->
       <details class="FilterBox">
         <summary>Dietary</summary>
         <button class="FilterButton" onclick='filterRecipes("dietary", "Vegetarian", this)'>Vegetarian</button>
@@ -40,14 +40,16 @@
         <button class="FilterButton" onclick='resetFilter()'>ALL Dietary</button>
       </details>
 
+      <!-- The course they want to cook will be different depending on the situation of the table or the degree of fullness. -->
       <details class="FilterBox">
         <summary>Course</summary>
         <button class="FilterButton" onclick='filterRecipes("course", "Main", this)'>Main</button>
-        <button class="FilterButton" onclick='filterRecipes("course", "Side", this)'>Sidebased</button>
+        <button class="FilterButton" onclick='filterRecipes("course", "Side", this)'>Side</button>
         <button class="FilterButton" onclick='filterRecipes("course", "Dessert", this)'>Dessert</button>
         <button class="FilterButton" onclick='resetFilter()'>ALL Course</button>
       </details>
 
+      <!-- I thought most important thing to know is "could they cook that menu". So I added this category to let them know what is the choice to be successful meal. -->
       <details class="FilterBox">
         <summary>Skill Level</summary>
         <button class="FilterButton" onclick='filterRecipes("skilllevel", "Low", this)'>Low</button>
@@ -56,10 +58,9 @@
         <button class="FilterButton" onclick='resetFilter()'>ALL Skill Levels</button>
       </details>
 
+      <div style="height:5%;"></div><hr /> 
+
     </div>
-
-    <hr /> 
-
     <!-- Recipe 1 -->
     <!-- these are fine to leave as <div>s -->
     <div class="RecipeBox"
@@ -76,9 +77,8 @@
 
       <!-- don't forget to change out <div>s for the most appropriate element -->
       <!-- i'll give you one for free - you should change the URL into an <a> tag, don't forget to add the appropriate attributes so it works as a link -->
-      <div class="RecipeLink">URL: https://www.abc.net.au/everyday/baked-puttanesca-risotto-with-tomato-olives-lemon-parsley-recipe/11270338</div>
 
-      <div class="RecipeName">Recipe Name: Baked Puttanesca Risotto with Olives, Lemon and Parsley</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.abc.net.au/everyday/baked-puttanesca-risotto-with-tomato-olives-lemon-parsley-recipe/11270338">Baked Puttanesca Risotto with Olives, Lemon and Parsley</a></div>
 
       <div class="Author">Author: Hetty Mckinnon</div>
       
@@ -130,9 +130,7 @@
          data-course="Side"
     >
 
-      <div class="RecipeLink">URL: https://www.abc.net.au/everyday/caprese-salad-slow-roasted-tomato-rocket-basil-gremolata-recipe/10776846</div>
-
-      <div class="RecipeName">Recipe Name: Caprese Salad with Slow-Roasted Tomatoes, Rocket and Basil Gremolata</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.abc.net.au/everyday/caprese-salad-slow-roasted-tomato-rocket-basil-gremolata-recipe/10776846">Caprese Salad with Slow-Roasted Tomatoes, Rocket and Basil Gremolata</a></div>
 
       <div class="Author">Author: Hetty Mckinnon</div>
 
@@ -183,9 +181,7 @@
          data-course="Side"
     >
 
-      <div class="RecipeLink">URL: https://www.seriouseats.com/crispy-enoki-and-onion-fritter-with-thai-curry-mayo-recipe</div>
-
-      <div class="RecipeName">Recipe Name: Crispy Enoki and Onion Fritters with Thai Curry Mayo Recipe</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.seriouseats.com/crispy-enoki-and-onion-fritter-with-thai-curry-mayo-recipe">Crispy Enoki and Onion Fritters with Thai Curry Mayo Recipe</a></div>
 
       <div class="Author">Author: J. Kenji López-Alt</div>
 
@@ -236,9 +232,7 @@
          data-course="Dessert"
     >
 
-      <div class="RecipeLink">URL: https://www.maangchi.com/recipe/jjinppang</div>
-
-      <div class="RecipeName">Recipe Name: Fluffy Steamed Buns filled with Sweet Red Beans</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.maangchi.com/recipe/jjinppang">Fluffy Steamed Buns filled with Sweet Red Beans</a></div>
 
       <div class="Author">Author: Maangchi</div>
 
@@ -288,9 +282,7 @@
          data-course="Dessert"
     >
 
-      <div class="RecipeLink">URL: https://www.seriouseats.com/the-food-lab-best-chocolate-chip-cookie-recipe</div>
-
-      <div class="RecipeName">Recipe Name: The Food Lab's Chocolate Chip Cookies</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.seriouseats.com/the-food-lab-best-chocolate-chip-cookie-recipe">The Food Lab's Chocolate Chip Cookies</a></div>
 
       <div class="Author">Author: J. Kenji López-Alt</div>
 
@@ -339,9 +331,7 @@
          data-course="Side"
     >
 
-      <div class="RecipeLink">URL: https://www.seriouseats.com/grilled-cheese-with-kimchi-recipe</div>
-
-      <div class="RecipeName">Recipe Name: Grilled Cheese With Kimchi Recipe</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.seriouseats.com/grilled-cheese-with-kimchi-recipe">Grilled Cheese With Kimchi Recipe</a></div>
 
       <div class="Author">Author: J. Kenji López-Alt</div>
 
@@ -392,9 +382,7 @@
          data-course="Main"
     >
 
-      <div class="RecipeLink">URL: https://www.patreon.com/posts/recipe-hands-off-60369279</div>
-
-      <div class="RecipeName">Recipe Name: Hands-Off Pork and Beans</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.patreon.com/posts/recipe-hands-off-60369279">Hands-Off Pork and Beans</a></div>
 
       <div class="Author">Author: Carla Lalli Music</div>
 
@@ -444,9 +432,7 @@
          data-course="Side"
     >
 
-      <div class="RecipeLink">URL: https://www.maangchi.com/recipe/kimchijeon</div>
-
-      <div class="RecipeName">Recipe Name: Kimchi Pancake</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.maangchi.com/recipe/kimchijeon">Kimchi Pancake</a></div>
 
       <div class="Author">Author: Maangchi</div>
 
@@ -495,9 +481,7 @@
          data-course="Main"
     >
 
-      <div class="RecipeLink">URL: https://www.seriouseats.com/shakshuka-north-african-shirred-eggs-tomato-pepper-recipe</div>
-
-      <div class="RecipeName">Recipe Name: Shakshuka (North African–Style Poached Eggs in Spicy Tomato Sauce)</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.seriouseats.com/shakshuka-north-african-shirred-eggs-tomato-pepper-recipe">Shakshuka (North African–Style Poached Eggs in Spicy Tomato Sauce)</a></div>
 
       <div class="Author">Author: J. Kenji López-Alt</div>
 
@@ -546,9 +530,7 @@
          data-course="Main"
     >
 
-      <div class="RecipeLink">URL: https://www.patreon.com/posts/pasta-with-sauce-45042575</div>
-
-      <div class="RecipeName">Recipe Name: Spaghetti with Melted Cauliflower Sauce</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.patreon.com/posts/pasta-with-sauce-45042575">Spaghetti with Melted Cauliflower Sauce</a></div>
 
       <div class="Author">Author: Carla Lalli Music</div>
 
@@ -597,9 +579,7 @@
          data-course="Main"
     >
 
-      <div class="RecipeLink">URL: https://www.maangchi.com/recipe/yangnyeom-tongdak</div>
-
-      <div class="RecipeName">Recipe Name: Sweet, Sour, & Spicy Korean Fried Chicken</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.maangchi.com/recipe/yangnyeom-tongdak">Sweet, Sour, & Spicy Korean Fried Chicken</a></div>
 
       <div class="Author">Author: Maangchi</div>
 
@@ -650,9 +630,7 @@
          data-course="Main"
     >
 
-      <div class="RecipeLink">URL: https://www.seriouseats.com/ultimate-beef-stroganof-recipe</div>
-
-      <div class="RecipeName">Recipe Name: The Ultimate Beef Stroganoff Recipe</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.seriouseats.com/ultimate-beef-stroganof-recipe">The Ultimate Beef Stroganoff Recipe</a></div>
 
       <div class="Author">Author: J. Kenji López-Alt</div>
 
@@ -703,9 +681,7 @@
          data-course="Dessert"
     >
 
-      <div class="RecipeLink">URL: https://www.patreon.com/posts/recipe-vanilla-60100711</div>
-
-      <div class="RecipeName">Recipe Name: Vanilla-Brown Butter Pear Tart</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.patreon.com/posts/recipe-vanilla-60100711">Vanilla-Brown Butter Pear Tart</a></div>
 
       <div class="Author">Author: Carla Lalli Music</div>
 
@@ -756,9 +732,7 @@
          data-course="Main"
     >
 
-      <div class="RecipeLink">URL: https://www.abc.net.au/everyday/vegetarian-carbonara-with-mushrooms-and-miso/12426392</div>
-
-      <div class="RecipeName">Recipe Name: Vegetarian Carbonara with Mushrooms, Miso and Parmesan</div>
+      <div class="RecipeName">Recipe Name: <a href="https://www.abc.net.au/everyday/vegetarian-carbonara-with-mushrooms-and-miso/12426392">Vegetarian Carbonara with Mushrooms, Miso and Parmesan</a></div>
 
       <div class="Author">Author: Hetty Mckinnon</div>
 

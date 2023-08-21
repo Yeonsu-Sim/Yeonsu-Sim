@@ -10,6 +10,7 @@ function resetFilter(){
   for(let filterButton of filterButtonsArray){
    filterButton.classList.remove("SelectedFilter");
   }
+  window.scrollTo(0, 0);
 }
 
 // I've given the function a name related to its functionality - I've also declared three parameters:
@@ -46,6 +47,8 @@ function filterRecipes(filterCategory, filterBy, buttonClicked){
       filterButton.classList.remove("SelectedFilter");
     }
   }
+  window.scrollTo(0, 0);
+
 
 }
 

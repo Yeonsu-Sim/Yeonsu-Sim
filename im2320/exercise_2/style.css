@@ -18,11 +18,14 @@
 }
 
 body{
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   background-color: var(--col-01);
   color: var(--col-02);
   padding: 2vw;
+  margin-left: 17%;
 }
 
 /*
@@ -30,13 +33,23 @@ body{
   flex properties here on the container or on the individual flex items depending on how you want to style them
 */
 .RecipeBox{
-  display: flex;
+  width: 40%;
+  display: inline-flex;
   flex-direction: column;
   border: var(--border);
+  margin: 1% 2% 1% 0%;
 }
 
 .FilterSection{
-
+  display: block;
+  position: fixed;
+  width: 15%;
+  height: 92%;
+  top: 5.8%;
+  background-color: rgb(22,23,23,0.5);
+  font-style: italic;
+  overflow: scroll;
+  left: 2%;
 }
 
 .FilterBox{
@@ -44,6 +57,9 @@ body{
 }
 
 .FilterButton{
+  background-color: rgb(255,255,255,0.5);
+  width:100%;
+  overflow-wrap: break-word;
 
 }
 /* 
@@ -52,10 +68,6 @@ body{
 */
 .SelectedFilter{
   background-color: red;
-}
-
-.RecipeLink{
-
 }
 
 .RecipeName{
@@ -72,6 +84,9 @@ body{
 }
 
 .RecipeImg{
+  display: flex;
+  width: 100%;
+  flex: auto;
 
 }
 
@@ -118,5 +133,21 @@ body{
 
 .SpecialEquipment{
 
+}
+
+.RecipeName > a{
+  color: yellow;
+}
+
+.RecipeName > a:visited{
+  color:orange;
+}
+
+a {
+  color: var(--col-04);
+}
+
+a:visited {
+  color: var(--col-03);
 }
 
