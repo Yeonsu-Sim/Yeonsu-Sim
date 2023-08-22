@@ -24,38 +24,38 @@
 
       <details class="FilterBox">
         <summary>Author</summary>
-        <button class="FilterButton" onclick='filterRecipes("author", "KLA", this)'>J. Kenji López-Alt</button>
-        <button class="FilterButton" onclick='filterRecipes("author", "M", this)'>Maangchi</button>
-        <button class="FilterButton" onclick='filterRecipes("author", "HM", this)'>Hetty McKinnon</button>
-        <button class="FilterButton" onclick='filterRecipes("author", "CLM", this)'>Carla Lalli Music</button>
-        <button class="FilterButton" onclick='resetFilter()'>ALL Authors</button>
+        <button name="author" class="FilterButton" onclick='filterRecipes("author", "KLA", this)'>J. Kenji López-Alt</button>
+        <button name="author" class="FilterButton" onclick='filterRecipes("author", "M", this)'>Maangchi</button>
+        <button name="author" class="FilterButton" onclick='filterRecipes("author", "HM", this)'>Hetty McKinnon</button>
+        <button name="author" class="FilterButton" onclick='filterRecipes("author", "CLM", this)'>Carla Lalli Music</button>
+        <button name="author" class="FilterButton" onclick='resetFilter("author")'>ALL Authors</button>
       </details>
 
       <!-- Since web pages can be visited by various people from all over the world, I hoped they can easily filtering by dietary which they pursue for religious reasons and so on. -->
       <details class="FilterBox">
         <summary>Dietary</summary>
-        <button class="FilterButton" onclick='filterRecipes("dietary", "Vegetarian", this)'>Vegetarian</button>
-        <button class="FilterButton" onclick='filterRecipes("dietary", "Meat based", this)'>Meat based</button>
-        <button class="FilterButton" onclick='filterRecipes("dietary", "Pescatarian", this)'>Pescatarian</button>
-        <button class="FilterButton" onclick='resetFilter()'>ALL Dietary</button>
+        <button name="dietary" class="FilterButton" onclick='filterRecipes("dietary", "Pescatarian", this)'>Pescatarian</button>
+        <button name="dietary" class="FilterButton" onclick='filterRecipes("dietary", "Vegetarian", this)'>Vegetarian</button>
+        <button name="dietary" class="FilterButton" onclick='filterRecipes("dietary", "Meat based", this)'>Meat based</button>
+        <button name="dietary" class="FilterButton" onclick='resetFilter("dietary")'>ALL Dietary</button>
       </details>
 
       <!-- The course they want to cook will be different depending on the situation of the table or the degree of fullness. -->
       <details class="FilterBox">
         <summary>Course</summary>
-        <button class="FilterButton" onclick='filterRecipes("course", "Main", this)'>Main</button>
-        <button class="FilterButton" onclick='filterRecipes("course", "Side", this)'>Side</button>
-        <button class="FilterButton" onclick='filterRecipes("course", "Dessert", this)'>Dessert</button>
-        <button class="FilterButton" onclick='resetFilter()'>ALL Course</button>
+        <button name="course" class="FilterButton" onclick='filterRecipes("course", "Main", this)'>Main</button>
+        <button name="course" class="FilterButton" onclick='filterRecipes("course", "Side", this)'> Side<filter/button>
+        <button name="course" class="FilterButton" onclick='filterRecipes("course", "Dessert", this)'>Dessert</button>
+        <button name="course" class="FilterButton" onclick='resetFilter("course")'>ALL Course</button>
       </details>
 
       <!-- I thought most important thing to know is "could they cook that menu". So I added this category to let them know what is the choice to be successful meal. -->
       <details class="FilterBox">
         <summary>Skill Level</summary>
-        <button class="FilterButton" onclick='filterRecipes("skilllevel", "Low", this)'>Low</button>
-        <button class="FilterButton" onclick='filterRecipes("skilllevel", "Medium", this)'>Medium</button>
-        <button class="FilterButton" onclick='filterRecipes("skilllevel", "High", this)'>High</button>
-        <button class="FilterButton" onclick='resetFilter()'>ALL Skill Levels</button>
+        <button name="skilllevel" class="FilterButton" onclick='filterRecipes("skilllevel", "Low", this)'>Low</button>
+        <button name="skilllevel" class="FilterButton" onclick='filterRecipes("skilllevel", "Medium", this)'>Medium</button>
+        <button name="skilllevel" class="FilterButton" onclick='filterRecipes("skilllevel", "High", this)'>High</button>
+        <button name="skilllevel" class="FilterButton" onclick='resetFilter("skilllevel")'>ALL Skill Levels</button>
       </details>
 
       <div style="height:5%;"></div><hr /> 
