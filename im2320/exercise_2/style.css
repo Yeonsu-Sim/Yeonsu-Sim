@@ -38,6 +38,7 @@ body{
   flex-direction: column;
   border: var(--border);
   margin: 1% 2% 1% 0%;
+  text-align: center;
 }
 
 .FilterSection{
@@ -53,13 +54,14 @@ body{
 }
 
 .FilterBox{
-
 }
 
 .FilterButton{
   background-color: rgb(255,255,255,0.5);
   width:100%;
   overflow-wrap: break-word;
+  max-width: 100px;
+  margin-left: 10%;
 
 }
 /* 
@@ -67,19 +69,24 @@ body{
   any duplicate properties
 */
 .SelectedFilter{
-  background-color: red;
+  background-image: linear-gradient(gold,orange, gold);
 }
 
 .RecipeName{
-  color: yellow;
-
+  font-size: 1.2em;
+  color: gold;
+  text-align: center;
 }
 
 .Author{
-  background-color: red;
+  background-image: linear-gradient(to right, red 35%,orange,gold);
+  align-self: stretch;
+  text-align: left;
 }
 
 .RecipeImageContainer{
+  text-align: center;
+  background-color: rgb(0,0,0, 0.4);
 
 }
 
@@ -103,7 +110,7 @@ body{
 }
 
 .TimeToCook{
-  color: magenta;
+  color: violet;
 
 }
 
@@ -116,7 +123,7 @@ body{
 }
 
 .Servings{
-
+  color: paleturquoise;
 }
 
 .Dietary{
@@ -132,11 +139,11 @@ body{
 }
 
 .SpecialEquipment{
-
+  color: hotpink;
 }
 
 .RecipeName > a{
-  color: yellow;
+  color: gold;
 }
 
 .RecipeName > a:visited{
