@@ -5,8 +5,10 @@
 let audioElement = document.getElementById("audioElement");
 const audioPlayerOverlay = document.getElementById("audioPlayOverlay");
 const background = document.getElementById("background");
+const turnLight = document.getElementsByClassName("turnLight");
+
 // the buttons for the controls
-const audioControlButton = document.getElementsByClassName("audio-control-button");
+const audioControlButtons = document.getElementsByClassName("audio-control-button");
 const playButton = document.getElementById("playButton");
 // const stopButton = document.getElementById("stopButton");
 const forwardButton = document.getElementById("forwardButton");
@@ -25,12 +27,16 @@ const yellowBall = document.getElementById("yellowBall");
 const greenBall = document.getElementById("greenBall");
 const blueBall = document.getElementById("blueBall");
 redBall.next = yellowBall;
+redBall.trackNumber = 1;
 yellowBall.next = greenBall;
+yellowBall.trackNumber = 2;
 greenBall.next = blueBall;
+greenBall.trackNumber = 3;
 blueBall.next = redBall;
+blueBall.trackNumber = 4;
 
-let musicBalls = [redBall, yellowBall, greenBall, blueBall];
-  
+const musicBalls = [redBall, yellowBall, greenBall, blueBall];
+const movements = ["moveToFirst","moveToSecond","moveToThird","moveToFourth"];
 let trackList = [];
 musicBalls.forEach(musicBall => {
   trackList.push(musicBall);
@@ -38,6 +44,36 @@ musicBalls.forEach(musicBall => {
 
 console.log("Play Album");
 playAlbum(trackList[0]);
+
+/*  */
+function playAlbum(music) {
+
+  colorImage.src = music.dataset["img"];
+  background.style.backgroundImage = music.dataset["gradient"];
+
+  // turnLight.style.backgroundImage = "linear-gradient(var(--col-02), var(--col-05) 10%, var(--col-02), var(--col-05) 90%, var(--col-02))";
+  // background.classList.add("turnLight");
+  // backgroundturnLight.backgroundImage = music.dataset["gradient"];
+  // background.classList.remove("turnLight");
+
+  progressBar.value = "0";
+
+  for (let i = 0; i< audioControlButtons.length; i++)
+    audioControlButtons[i].style.filter = "drop-shadow(0 0 0.5rem "+music.dataset["color"]+")";
+  
+  moveBalls();
+  
+  audioElement.src="";
+  newAudio(music);
+
+  setTimeout( () => {
+    audioElement.onload = playPause();
+    // playPause(); // <<<<<<<<<<<<<<<<<<<<<<<<<<<delete this one>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    if (loopButton.looped == "one-loop" && trackList.length == 1)
+      playPause();
+
+  }, 1500);
+}
 
 /*  */
 function newAudio(music) {
@@ -62,21 +98,21 @@ function newAudio(music) {
     playButton.style.backgroundImage = "url('./icons/play.png')";
 
     audioElement.src = "";
-    if (loopButton.looped == "no-loop") {
-    }
-    else if (loopButton.looped == "one-loop") {
-      loopButton.looped = "in-one-loop";
+    if (loopButton.looped == "one-loop") {
+    } 
+    else if (loopButton.looped == "no-loop") {
+      loopButton.looped = "in-no-loop";
       while (trackList.length != musicBalls.length) {
         trackList.push(trackList[(trackList.length)-1].next);
       }
       trackList.shift();
     }
-    else if (loopButton.looped == "in-one-loop") {
+    else if (loopButton.looped == "in-no-loop") {
       if (trackList.length > 1)
         trackList.shift();
       else {
-        loopButton.looped = "no-loop";
-        loopButton.style.backgroundImage = "url('./icons/noLoop.png')";
+        loopButton.looped = "one-loop";
+        loopButton.style.backgroundImage = "url('./icons/oneLoop.png')";
       }
     }
     else if (loopButton.looped == "loops") {
@@ -93,25 +129,24 @@ function newAudio(music) {
 
 } 
 
-/*  */
-function playAlbum(music) {
-  colorImage.src = music.dataset["img"];
-  background.style.backgroundImage = music.dataset["gradient"];
-  progressBar.value = "0";
-  for (let i = 0; i< audioControlButton.length; i++)
-    audioControlButton[i].style.filter = "drop-shadow(0 0 0.5rem "+music.dataset["color"]+")";
+function moveBalls() {
+  let track = trackList[0];
+  let step = track.trackNumber;
 
-  setTimeout( () => {
-
-    newAudio(music);
-    audioElement.onload = playPause();
-    playPause();
-    // playPause(); // <<<<<<<<<<<<<<<<<<<<<<<<<<<delete this one>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    if (loopButton.looped == "no-loop" && trackList.length == 1)
-      playPause();
-
-  }, 1500);
+  for (let i=0; i<step; i++) {
+    for (let j=0; j<musicBalls.length; j++){
+      let location = track.trackNumber;
+      track.classList.add(movements[(location-1+musicBalls.length)%musicBalls.length]);
+      track.classList.remove(movements[location]);
+    
+      track.trackNumber--;
+      track.trackNumber += musicBalls.length;
+      track.trackNumber %= musicBalls.length;
+      track = track.next;
+    }
+  }
 }
+
 
 // next we remove the controls attribute - we do this with JS rather than just not including it in the HTML tag as a fallback
 // this way if the JS doesn't load for whatever reason the player will have the default built in controls
@@ -165,8 +200,8 @@ document.getElementById("controlsWrapper").style.display = "flex";
 redBall.addEventListener('click', () => {    
   if (trackList[0] == redBall)
     return;
-  audioElement.pause();
-  audioElement.src = "";
+  // audioElement.pause();
+  // audioElement.src = "";
   while (trackList[0] !== redBall) {
     if (trackList.length == 1)
       trackList = [redBall];
@@ -181,8 +216,8 @@ yellowBall.addEventListener('click', () => {
   if (trackList[0] == yellowBall)
     return;
 
-  audioElement.pause();
-  audioElement.src = "";
+  // audioElement.pause();
+  // audioElement.src = "";
   while (trackList[0] !== yellowBall) {
     if (trackList.length == 1)
       trackList = [yellowBall];
@@ -197,8 +232,8 @@ greenBall.addEventListener('click', () => {
   if (trackList[0] == greenBall)
     return;
 
-  audioElement.pause();
-  audioElement.src = "";
+  // audioElement.pause();
+  // audioElement.src = "";
   while (trackList[0] !== greenBall) {
     if (trackList.length == 1)
       trackList = [greenBall];
@@ -213,8 +248,8 @@ blueBall.addEventListener('click', () => {
   if (trackList[0] == blueBall)
     return;
 
-  audioElement.pause();
-  audioElement.src = "";
+  // audioElement.pause();
+  // audioElement.src = "";
   while (trackList[0] !== blueBall) {
     if (trackList.length == 1)
       trackList = [blueBall];
@@ -226,15 +261,19 @@ blueBall.addEventListener('click', () => {
 });
 
 /* COLOR IMAGE */
-
-colorImage.addEventListener('click', () => {
-  if (colorImage.style.width == "300px") {
+function fullScreen() {
+  if (colorImage.style.width == "45%") {
     colorImage.style.width = "100%";
-    colorImage.style.margingBottom = "100%";
+    colorImage.style.flex = "auto";
+    colorImage.style.filter = "drop-shadow(0 0 5rem "+trackList[0].dataset['color']+")";
+}
+  else {
+    colorImage.style.width = "45%";
+    colorImage.style.flex = "inherit";
+    colorImage.style.filter = "drop-shadow(10px 10px 10px rgba(0,0,0, 0.5))"
   }
-  else 
-    colorImage.style.width = "300px";
-});
+}
+colorImage.addEventListener('click', fullScreen);
 
 
 /* PLAY/PAUSE */
@@ -340,12 +379,12 @@ muteButton.addEventListener('keydown', (e) => {
 
 function loopUnloop() {
   if (loopButton.looped == "loops") {
-    loopButton.looped = "one-loop";
-    loopButton.style.backgroundImage = "url('./icons/oneLoop.png')";
-  }
-  else if (loopButton.looped == "one-loop" || loopButton.looped == "in-one-loop") {
     loopButton.looped = "no-loop";
     loopButton.style.backgroundImage = "url('./icons/noLoop.png')";
+  }
+  else if (loopButton.looped == "no-loop" || loopButton.looped == "in-no-loop") {
+    loopButton.looped = "one-loop";
+    loopButton.style.backgroundImage = "url('./icons/oneLoop.png')";
   }
   else {
     loopButton.looped = "loops";
@@ -399,6 +438,8 @@ window.addEventListener('keydown', (e) => {
     volumeUp();
   else if (e.code == "ArrowDown")
     volumeDown();
+  else if (e.code == "KeyF")
+    fullScreen();
 });
 window.onwheel = (e) => {
   volume(e);

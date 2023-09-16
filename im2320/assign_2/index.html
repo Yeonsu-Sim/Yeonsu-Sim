@@ -26,8 +26,6 @@
 
     <div id="background">
 
-      <div class=".timeline-loading"></div>
-
       <button id="redBall" class="musicBall" type="button"
         data-color="red"
         data-gradient="linear-gradient(var(--col-02), var(--col-05) 10%, red, var(--col-05) 90%, var(--col-02))"
@@ -54,7 +52,9 @@
       ></button>      
 
       <!-- This is just an image placeholder, feel free to replace or not -->
-      <img id="colorImage" src="./images/redImg.jpeg" alt="">
+      <div class="color-image-wrapper">
+        <img id="colorImage" src="./images/redImg.jpeg" alt="">
+      </div>
       
 
       <!-- this element holds all of the media player -->
