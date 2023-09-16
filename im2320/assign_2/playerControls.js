@@ -5,10 +5,10 @@
 let audioElement = document.getElementById("audioElement");
 const audioPlayerOverlay = document.getElementById("audioPlayOverlay");
 const background = document.getElementById("background");
-const turnLight = document.getElementsByClassName("turnLight");
+const TURNLIGHT = document.getElementsByClassName("turnLight");
 
 // the buttons for the controls
-const audioControlButtons = document.getElementsByClassName("audio-control-button");
+const AUDIOCONTROLBUTTON = document.getElementsByClassName("audio-control-button");
 const playButton = document.getElementById("playButton");
 // const stopButton = document.getElementById("stopButton");
 const forwardButton = document.getElementById("forwardButton");
@@ -16,12 +16,15 @@ const backwardButton = document.getElementById("backwardButton");
 const loopButton = document.getElementById("loopButton");
 loopButton.looped = "loops";
 const muteButton = document.getElementById("muteButton");
+muteButton.muted = false;
+muteButton.volume = 1;
 
 // the progress element
 const progressBar = document.getElementById("progressBar");
 // the hero image
 const colorImage = document.getElementById("colorImage");
 
+const MUSICBALL = document.getElementsByClassName("musicBall");
 const redBall = document.getElementById("redBall");
 const yellowBall = document.getElementById("yellowBall");
 const greenBall = document.getElementById("greenBall");
@@ -35,7 +38,7 @@ greenBall.trackNumber = 3;
 blueBall.next = redBall;
 blueBall.trackNumber = 4;
 
-const musicBalls = [redBall, yellowBall, greenBall, blueBall];
+let musicBalls = [redBall, yellowBall, greenBall, blueBall];
 const movements = ["moveToFirst","moveToSecond","moveToThird","moveToFourth"];
 let trackList = [];
 musicBalls.forEach(musicBall => {
@@ -51,15 +54,15 @@ function playAlbum(music) {
   colorImage.src = music.dataset["img"];
   background.style.backgroundImage = music.dataset["gradient"];
 
-  // turnLight.style.backgroundImage = "linear-gradient(var(--col-02), var(--col-05) 10%, var(--col-02), var(--col-05) 90%, var(--col-02))";
-  // background.classList.add("turnLight");
-  // backgroundturnLight.backgroundImage = music.dataset["gradient"];
-  // background.classList.remove("turnLight");
+  // TURNLIGHT.style.backgroundImage = "linear-gradient(var(--col-02), var(--col-05) 10%, var(--col-02), var(--col-05) 90%, var(--col-02))";
+  // background.classList.add("TURNLIGHT");
+  // backgroundTURNLIGHT.backgroundImage = music.dataset["gradient"];
+  // background.classList.remove("TURNLIGHT");
 
   progressBar.value = "0";
 
-  for (let i = 0; i< audioControlButtons.length; i++)
-    audioControlButtons[i].style.filter = "drop-shadow(0 0 0.5rem "+music.dataset["color"]+")";
+  for (let i = 0; i< AUDIOCONTROLBUTTON.length; i++)
+    AUDIOCONTROLBUTTON[i].style.filter = "drop-shadow(0 0 0.5rem "+music.dataset["color"]+")";
   
   moveBalls();
   
@@ -79,6 +82,11 @@ function playAlbum(music) {
 function newAudio(music) {
 
   audioElement = new Audio(music.dataset["src"]);
+
+  if (muteButton.muted) {
+    audioElement.muted = true;
+  }
+  audioElement.volume = muteButton.volume;
 
   audioElement.addEventListener('timeupdate', () => {
     progressBar.value = audioElement.currentTime;
@@ -144,6 +152,10 @@ function moveBalls() {
       track.trackNumber %= musicBalls.length;
       track = track.next;
     }
+    // track.classList.add(movements[i]);
+    // track.classList.remove(movements[(i-1+musicBalls.length)%musicBalls.length]);
+    // track = track.next;
+
   }
 }
 
@@ -348,16 +360,19 @@ function muteUnmute() {
   if (audioElement.volume == 0){
     audioElement.muted = false;
     audioElement.volume = 1;
+    muteButton.muted = false;
     muteButton.style.backgroundImage = "url('./icons/mute.png')";
     muteButton.style.backgroundPosition = "0px";
   }
   else if (!audioElement.muted){
     audioElement.muted= true;
+    muteButton.muted = true;
     muteButton.style.backgroundImage = "url('./icons/unmute.png')";
     muteButton.style.backgroundPosition = "-1.4px";
   }
   else { 
     audioElement.muted = false;
+    muteButton.muted = false;
     muteButton.style.backgroundImage = "url('./icons/mute.png')";
     muteButton.style.backgroundPosition = "0px";
   }
@@ -407,20 +422,27 @@ loopButton.addEventListener('keydown', (e) => {
 function volumeUp() {
   if (audioElement.volume <= 0.9)
     audioElement.volume += 0.1;
+  if (audioElement.volume != 0 && audioElement.muted)
+    muteUnmute();
+  muteButton.volume = audioElement.volume;
 }
 function volumeDown() {
   if (audioElement.volume >= 0.1)
     audioElement.volume -= 0.1;
-}
+  if (audioElement.volume < 0.1 && !audioElement.muted)
+    muteUnmute();
+  muteButton.volume = audioElement.volume;
+  }
 
 function volume(e) {
   let scale = audioElement.volume + e.deltaY / 8 * 0.1;
   // Restrict scale
-  scale = Math.min(Math.max(0.0, scale), 1.0);
+  scale = clampZeroOne(scale);
 
   if ((scale == 0 && !audioElement.muted) || (scale != 0 && audioElement.muted))
     muteUnmute();
   audioElement.volume = scale;
+  muteButton.volume = audioElement.volume;
 }
 
 window.addEventListener('keydown', (e) => {
