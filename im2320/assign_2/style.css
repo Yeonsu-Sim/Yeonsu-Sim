@@ -76,7 +76,6 @@
 }
 
 .musicBall{
-  z-index: 3;
   border: none;
   padding: 20px;
   position: absolute;
@@ -87,7 +86,6 @@
 }
 
 #redBall{
-  z-index: 4;
   background-image: radial-gradient(
     farthest-corner at 40% 40%,
     mistyrose,  red 60%, white 80%);
@@ -99,7 +97,6 @@
     mistyrose, rgb(255, 91, 91) 60%, white 80%);
 }
 #yellowBall{
-  z-index: 3;
   background-image: radial-gradient(
     farthest-corner at 40% 40%,
     floralwhite, gold 60%, white 80%);
@@ -111,7 +108,6 @@
     floralwhite, rgb(255, 228, 78) 60%, white 80%);
 }
 #greenBall{
-  z-index: 2;
   background-image: radial-gradient(
     farthest-corner at 40% 40%,
     honeydew, limegreen 60%, white 80%);
@@ -123,7 +119,6 @@
     honeydew, rgb(80, 219, 80) 60%, white 80%);
 }
 #blueBall{
-  z-index: 1;
   background-image: radial-gradient(
   farthest-corner at 40% 40%,
   lightcyan, cornflowerblue 60%, white 80%);
@@ -219,14 +214,12 @@
 
 #playButton{
   background-image: url('./icons/play.png');
-  /* background-color: transparent; */
   position: fixed;
   bottom: 20%;
   filter: drop-shadow(0 0 0.5rem red);
 }
 #backwardButton{
   background-image: url('./icons/backward.png');
-  /* background-color: transparent; */
   position: fixed;
   bottom: 20%;
   left: 30%;
@@ -234,7 +227,6 @@
 }
 #forwardButton{
   background-image: url('./icons/forward.png');
-  /* background-color: transparent; */
   position: fixed;
   bottom: 20%;
   right: 30%;
@@ -245,7 +237,6 @@
   width: 1.6rem;
   height: 1.6rem;
   background-image: url('./icons/loop.png');
-  /* background-color: transparent; */
   position: fixed;
   bottom: 20.5%;
   left: 11%;
@@ -253,7 +244,6 @@
 }
 #muteButton{
   background-image: url('./icons/mute.png');
-  /* background-color: transparent; */
   position: fixed;
   bottom: 20%;
   right: 10%;
@@ -261,7 +251,6 @@
 }
 #shuffleButton{
   background-image: url('./icons/shuffle.png');
-  /* background-color: transparent; */
   position: fixed;
   background-size: 1.6rem;
   width: 1.6rem;
@@ -272,7 +261,6 @@
 }
 #nightShiftButton{
   background-image: url('./icons/moon.png');
-  /* background-color: transparent; */
   position: fixed;
   top: 10%;
   right: 10%;
