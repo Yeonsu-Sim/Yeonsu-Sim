@@ -6,6 +6,7 @@ let audioElement = document.getElementById("audioElement");
 const audioPlayerOverlay = document.getElementById("audioPlayOverlay");
 const background = document.getElementById("background");
 const TURNLIGHT = document.getElementsByClassName("turnLight");
+const blinder = document.getElementById("blinder");
 
 // the buttons for the controls
 const AUDIOCONTROLBUTTON = document.getElementsByClassName("audio-control-button");
@@ -18,6 +19,10 @@ loopButton.looped = "loops";
 const muteButton = document.getElementById("muteButton");
 muteButton.muted = false;
 muteButton.volume = 1;
+const nightShiftButton = document.getElementById("nightShiftButton");
+nightShiftButton.light = "sun";
+const shuffleButton = document.getElementById("shuffleButton");
+shuffleButton.shuffled = false;
 
 // the progress element
 const progressBar = document.getElementById("progressBar");
@@ -36,9 +41,9 @@ yellowBall.trackNumber = 2;
 greenBall.next = blueBall;
 greenBall.trackNumber = 3;
 blueBall.next = redBall;
-blueBall.trackNumber = 4;
+blueBall.trackNumber = 4 ;
 
-let musicBalls = [redBall, yellowBall, greenBall, blueBall];
+const musicBalls = [redBall, yellowBall, greenBall, blueBall];
 const movements = ["moveToFirst","moveToSecond","moveToThird","moveToFourth"];
 let trackList = [];
 musicBalls.forEach(musicBall => {
@@ -46,6 +51,7 @@ musicBalls.forEach(musicBall => {
 });
 
 console.log("Play Album");
+let initial = true;
 playAlbum(trackList[0]);
 
 /*  */
@@ -53,6 +59,13 @@ function playAlbum(music) {
 
   colorImage.src = music.dataset["img"];
   background.style.backgroundImage = music.dataset["gradient"];
+  
+  musicBalls.forEach(musicBall => {
+    progressBar.classList.remove(musicBall.dataset["progress"]);
+  });
+  progressBar.classList.add(music.dataset["progress"]);
+
+  background.classList.add("turnLight");
 
   // TURNLIGHT.style.backgroundImage = "linear-gradient(var(--col-02), var(--col-05) 10%, var(--col-02), var(--col-05) 90%, var(--col-02))";
   // background.classList.add("TURNLIGHT");
@@ -69,13 +82,6 @@ function playAlbum(music) {
   audioElement.src="";
   newAudio(music);
 
-  setTimeout( () => {
-    audioElement.onload = playPause();
-    // playPause(); // <<<<<<<<<<<<<<<<<<<<<<<<<<<delete this one>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    if (loopButton.looped == "one-loop" && trackList.length == 1)
-      playPause();
-
-  }, 1500);
 }
 
 /*  */
@@ -94,13 +100,22 @@ function newAudio(music) {
 
   audioElement.addEventListener('loadedmetadata', () => {
     progressBar.setAttribute('max', audioElement.duration);
+    setTimeout(() => {
+      if (initial)
+        initial = false;
+      else {
+        audioElement.play();
+        playButton.style.backgroundImage = "url('./icons/pause.png')";
+      }
+
+      if (loopButton.looped == "end-no-loop" && trackList.length == 1){
+        audioElement.pause();
+        playButton.style.backgroundImage = "url('./icons/play.png')";
+        loopButton.looped = "one-loop";
+        loopButton.style.backgroundImage = "url('./icons/oneLoop.png')";
+      }
+    },1500);
   });
-  // audioElement.addEventListener("waiting", () => {
-  //   progressBar.classList.add("timeline-loading");
-  // });
-  // audioElement.addEventListener("canplay", () => {
-  //   progressBar.classList.remove("timeline-loading");
-  // });
 
   audioElement.addEventListener("ended", () => {
     playButton.style.backgroundImage = "url('./icons/play.png')";
@@ -108,7 +123,7 @@ function newAudio(music) {
     audioElement.src = "";
     if (loopButton.looped == "one-loop") {
     } 
-    else if (loopButton.looped == "no-loop") {
+    else if (loopButton.looped == "start-no-loop") {
       loopButton.looped = "in-no-loop";
       while (trackList.length != musicBalls.length) {
         trackList.push(trackList[(trackList.length)-1].next);
@@ -119,8 +134,7 @@ function newAudio(music) {
       if (trackList.length > 1)
         trackList.shift();
       else {
-        loopButton.looped = "one-loop";
-        loopButton.style.backgroundImage = "url('./icons/oneLoop.png')";
+        loopButton.looped = "end-no-loop";
       }
     }
     else if (loopButton.looped == "loops") {
@@ -139,23 +153,21 @@ function newAudio(music) {
 
 function moveBalls() {
   let track = trackList[0];
-  let step = track.trackNumber;
-
-  for (let i=0; i<step; i++) {
-    for (let j=0; j<musicBalls.length; j++){
-      let location = track.trackNumber;
-      track.classList.add(movements[(location-1+musicBalls.length)%musicBalls.length]);
-      track.classList.remove(movements[location]);
-    
-      track.trackNumber--;
-      track.trackNumber += musicBalls.length;
-      track.trackNumber %= musicBalls.length;
+  if (track.trackNumber != 0) {
+    for (let i=0; i< musicBalls.length; i++) {
+      track.classList.add(movements[i]);
+      track.classList.remove(movements[track.trackNumber]);
+      track.trackNumber = i;
       track = track.next;
     }
-    // track.classList.add(movements[i]);
-    // track.classList.remove(movements[(i-1+musicBalls.length)%musicBalls.length]);
-    // track = track.next;
-
+  }
+  else {
+    for (let i=1; i<musicBalls.length; i++) {
+      track = track.next;
+      track.classList.remove(movements[track.trackNumber]);
+      track.classList.add(movements[i]);
+      track.trackNumber = i;
+    }
   }
 }
 
@@ -299,8 +311,9 @@ function playPause(){
   // the following if statement checks to see if the media is currently paused OR if the media has finshed playing - || inside of an if 
   // statement like this is how we write an OR conditional, if either of these things are true it'll trigger the block of code
   // the reason we check for both is that when the audio finishes playing it'll be in an ended state not a paused state
+
   if (audioElement.paused || audioElement.ended) {
-    // if it isn't already playing make it play
+    // if it isn't already playing make it playㅡ
     audioElement.play();
     // then make sure the icon on the button changes to pause indicating what it does if you click it
     playButton.style.backgroundImage = "url('./icons/pause.png')";
@@ -308,7 +321,7 @@ function playPause(){
     // if it is already playing make it pause
     audioElement.pause();
     // then make sure the icon on the button changes to play indicating what it does if you click it
-    playButton.style.backgroundImage = "url('./icons/play.png')";
+    playButton.style.backgroundImage = "url('./icons/play.png')"; 
     }
 
 }
@@ -394,10 +407,10 @@ muteButton.addEventListener('keydown', (e) => {
 
 function loopUnloop() {
   if (loopButton.looped == "loops") {
-    loopButton.looped = "no-loop";
+    loopButton.looped = "start-no-loop";
     loopButton.style.backgroundImage = "url('./icons/noLoop.png')";
   }
-  else if (loopButton.looped == "no-loop" || loopButton.looped == "in-no-loop") {
+  else if (loopButton.looped == "start-no-loop" || loopButton.looped == "in-no-loop" || loopButton.looped == "end-no-loop") {
     loopButton.looped = "one-loop";
     loopButton.style.backgroundImage = "url('./icons/oneLoop.png')";
   }
@@ -445,6 +458,87 @@ function volume(e) {
   muteButton.volume = audioElement.volume;
 }
 
+function shiftLight() {
+  if (nightShiftButton.light != "moon") {
+    nightShiftButton.light = "moon";
+    blinder.style.backgroundColor = "rgba(0,0,0,0.5";
+    nightShiftButton.style.backgroundImage = "url('./icons/sun.png')";
+  }
+  else {
+    nightShiftButton.light = "sun";
+    blinder.style.backgroundColor = "transparent";
+    nightShiftButton.style.backgroundImage = "url('./icons/moon.png')";
+  }
+}
+
+nightShiftButton.addEventListener('click', shiftLight);
+nightShiftButton.addEventListener('keydown', (e) => {
+  if (e.code == "Space")
+    playPause();
+  else if (e.code == "KeyN")
+    shiftLight();
+});
+nightShiftButton.addEventListener('keydown', (e) => {
+  if (e.code == "KeyN")
+  shiftLight();
+})
+
+let map = new Map();
+
+function shuffle() {
+  if (!shuffleButton.shuffled) {
+    shuffleButton.shuffled = true;
+    shuffleButton.style.backgroundImage = "url('./icons/unshuffle.png')";
+
+    let track = trackList[0];
+    trackList = [track];
+
+    for (let i=0; i<musicBalls.length-1; i++) {
+      let randInt = getRandomInt(100);
+      while (map.has(randInt))
+        randInt = getRandomInt(100);
+  
+      map.set(randInt, track.next);
+      track = track.next;
+    }
+    
+  
+    track = trackList[0];
+    while (map.size != 0) {
+      let biggest = -1;
+      map.forEach((musicBall,num) => {
+        biggest = Math.max(num,biggest);
+      })
+      track.next = map.get(biggest);
+      track = track.next;
+      map.delete(biggest);
+    }
+    track.next = trackList[0];
+  }
+  else {
+    shuffleButton.shuffled = false;
+    shuffleButton.style.backgroundImage = "url('./icons/shuffle.png')";
+    redBall.next = yellowBall;
+    yellowBall.next = greenBall;
+    greenBall.next = blueBall;
+    blueBall.next = redBall;
+  }
+  moveBalls();  
+
+}
+shuffleButton.addEventListener('click', shuffle);
+shuffleButton.addEventListener('keydown', (e) => {
+  if (e.code == "Space")
+    playPause();
+  else if (e.code == "KeyS")
+    shuffle();
+});
+shuffleButton.addEventListener('keydown', (e) => {
+  if (e.code == "KeyS")
+    shuffle();
+})
+
+
 window.addEventListener('keydown', (e) => {
   if (e.code == "Space")
     playPause();
@@ -462,6 +556,10 @@ window.addEventListener('keydown', (e) => {
     volumeDown();
   else if (e.code == "KeyF")
     fullScreen();
+  else if (e.code == "keyN")
+    shiftLight();
+  else if (e.code == "keyS")
+    shuffle();
 });
 window.onwheel = (e) => {
   volume(e);
@@ -537,6 +635,10 @@ progressBar.addEventListener('mousedown', (e) => {
 
 
 /* HELPER FUNCTIONS */
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
 function clampZeroOne(input){
   return Math.min(Math.max(input, 0), 1);

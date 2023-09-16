@@ -23,7 +23,6 @@
   </head>
 
   <body>
-
     <div id="background">
 
       <button id="redBall" class="musicBall" type="button"
@@ -31,28 +30,32 @@
         data-gradient="linear-gradient(var(--col-02), var(--col-05) 10%, red, var(--col-05) 90%, var(--col-02))"
         data-src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/p-hase_Hes.mp3"
         data-img="./images/redImg.jpeg"
+        data-progress="progress-red"
       ></button>
       <button id="yellowBall" class="musicBall" type="button"
         data-color="gold"
         data-gradient="linear-gradient(var(--col-02), var(--col-05) 10%, gold, var(--col-05) 90%, var(--col-02))"
         data-src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/p-hase_Water-Feature.mp3"
         data-img="./images/yellowImg.jpeg"
-      ></button>
+        data-progress="progress-yellow"
+        ></button>
       <button id="greenBall" class="musicBall" type="button"
         data-color="limegreen"
         data-gradient="linear-gradient(var(--col-02), var(--col-05) 10%, limegreen, var(--col-05) 90%, var(--col-02))"
         data-src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/p-hase_Dry-Down-feat-Ben-Snaath.mp3"
         data-img="./images/greenImg.jpeg"
-      ></button>
+        data-progress="progress-green"
+        ></button>
       <button id="blueBall" class="musicBall" type="button"
         data-color="cornflowerblue"
         data-gradient="linear-gradient(var(--col-02), var(--col-05) 10%, cornflowerblue, var(--col-05) 90%, var(--col-02))"
         data-src="https://thelongesthumstore.sgp1.cdn.digitaloceanspaces.com/IM-2250/p-hase_Leapt.mp3"
         data-img="./images/blueImg.jpeg"
-      ></button>      
+        data-progress="progress-blue"
+        ></button>      
 
       <!-- This is just an image placeholder, feel free to replace or not -->
-      <div class="color-image-wrapper">
+      <div id="blinder">
         <img id="colorImage" src="./images/redImg.jpeg" alt="">
       </div>
       
@@ -79,6 +82,10 @@
           <button id="playButton" class="audio-control-button"></button>
           <button id="forwardButton" class="audio-control-button"></button>
           <button id="muteButton" class="audio-control-button"></button>
+
+          <button id="shuffleButton" class="audio-control-button"></button>
+          <button id="nightShiftButton" class="audio-control-button"></button>
+
 
         </div>
         
