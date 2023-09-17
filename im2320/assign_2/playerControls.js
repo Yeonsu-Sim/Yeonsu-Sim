@@ -151,8 +151,8 @@ function newAudio(music) {
         trackList.push(trackList[(trackList.length)-1].next);
       }
       // track list is a queue structure (first-in first-out)
-      trackList.push(trackList[0]);
-      trackList.shift();
+      trackList.push(trackList[0]);  // infinite loop
+      trackList.shift();  // remove played track
     }
 
     playAlbum(trackList[0]);  // playing next track
@@ -552,7 +552,7 @@ shuffleButton.addEventListener('keydown', (e) => {
 
 
 window.addEventListener('keydown', (e) => {
-  if (e.code == "Space")
+  if (e.code == "Space" || e.code == "KeyK")
     playPause();
   else if (e.code == "ArrowRight")
     forward();
