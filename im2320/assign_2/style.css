@@ -1,3 +1,4 @@
+/*  Default set */
 *{
   box-sizing: border-box;
   background-origin: border-box;
@@ -6,7 +7,6 @@
 
 /* Basis for colour palette comes from 1bit Monitor Glow Palette by Polyducks */
 /* https://lospec.com/palette-list/1bit-monitor-glow */
-/* you're welcome to change the colours if you want or any of the other general page style */
 :root{
   --col-01:#222323;
   --col-02:#f0f6f0;
@@ -17,6 +17,7 @@
   --border: 1px solid var(--col-02);
 }
 
+/* background set */
 #background{
   display: flex;
   flex-direction: column;
@@ -24,21 +25,11 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: linear-gradient(var(--col-02), var(--col-05) 10%, red, var(--col-05) 90%, var(--col-02));
+  background-image: linear-gradient(var(--col-02), var(--col-05) 10%, var(--col-01), var(--col-05) 90%, var(--col-02));
   overflow: hidden;
 }
-.turnLight{
-  transition: animation 1s;
-}
-@keyframes animation {
-  from {
-    background-image: linear-gradient(var(--col-02), var(--col-05) 10%, red, var(--col-05) 90%, var(--col-02));
-  }
-  to {
-    background-image: linear-gradient(var(--col-02), var(--col-05) 10%, var(--col-02), var(--col-05) 90%, var(--col-02));
-  }
-}
 
+/* audio player wrapper set */
 .audio-player-wrapper{
   display: inline-flex;
   flex-direction: column;
@@ -56,6 +47,7 @@
   padding: 5%;
 }
 
+/* night shift set */
 #blinder{
   position: absolute;
   width: 100%;
@@ -67,6 +59,7 @@
   justify-content: center;
 }
 
+/* center image set */
 #colorImage{
   z-index: 0;
   width: 45%;
@@ -75,6 +68,7 @@
   cursor: pointer;
 }
 
+/* becuase I want 'musicBall' buttons relatively to move in their own wrapper */
 .musicBall{
   border: none;
   padding: 20px;
@@ -84,64 +78,74 @@
   cursor: pointer;
   margin-top: 40px;
 }
-
+/* 'var(--col-01)Ball' button set */
 #redBall{
+  /* 
+    I choose radial gradent image starting with left corner,
+    because I want it to be shown as three demensions.
+  */
   background-image: radial-gradient(
     farthest-corner at 40% 40%,
-    mistyrose,  red 60%, white 80%);
+    mistyrose,  red 60%, var(--col-02) 80%);
+
+    /* drop shadow with it's color */
     filter: drop-shadow(0 0 0.3rem red);
 }
 #redBall:hover{
   background-image: radial-gradient(
     farthest-corner at 40% 40%,
-    mistyrose, rgb(255, 91, 91) 60%, white 80%);
+    mistyrose, rgb(255, 91, 91) 60%, var(--col-02) 80%);
 }
 #redBall:active{
   transform: scale(1.5);
 }
+/* 'yellowBall' button set */
 #yellowBall{
   background-image: radial-gradient(
     farthest-corner at 40% 40%,
-    floralwhite, gold 60%, white 80%);
+    floralwhite, gold 60%, var(--col-02) 80%);
     filter: drop-shadow(0 0 0.3rem gold);
 }
 #yellowBall:hover {
   background-image: radial-gradient(
     farthest-corner at 40% 40%,
-    floralwhite, rgb(255, 228, 78) 60%, white 80%);
+    floralwhite, rgb(255, 228, 78) 60%, var(--col-02) 80%);
 }
 #yellowBall:active{
   transform: scale(1.5);
 }
+/* 'greenBall' button set */
 #greenBall{
   background-image: radial-gradient(
     farthest-corner at 40% 40%,
-    honeydew, limegreen 60%, white 80%);
+    honeydew, limegreen 60%, var(--col-02) 80%);
     filter: drop-shadow(0 0 0.3rem limegreen);
 }
 #greenBall:hover{
   background-image: radial-gradient(
     farthest-corner at 40% 40%,
-    honeydew, rgb(80, 219, 80) 60%, white 80%);
+    honeydew, rgb(80, 219, 80) 60%, var(--col-02) 80%);
 }
 #greenBall:active{
   transform: scale(1.5);
 }
+/* 'blueBall' button set */
 #blueBall{
   background-image: radial-gradient(
   farthest-corner at 40% 40%,
-  lightcyan, cornflowerblue 60%, white 80%);
+  lightcyan, cornflowerblue 60%, var(--col-02) 80%);
   filter: drop-shadow(0 0 0.3rem cornflowerblue);
 }
 #blueBall:hover{
   background-image: radial-gradient(
   farthest-corner at 40% 40%,
-  lightcyan, rgb(139, 175, 241) 60%, white 80%);
+  lightcyan, rgb(139, 175, 241) 60%, var(--col-02) 80%);
 }
 #blueBall:active{
   transform: scale(1.5);
 }
 
+/* margin set for music balls's movement */
 .moveToFirst{
   z-index:4;
   margin-top: 20px;
@@ -149,7 +153,6 @@
   margin-right: 0px;
   transition: all 1.5s ease-in-out;
 }
-
 .moveToSecond{
   z-index:3;
   margin-top: 50px;
@@ -157,7 +160,6 @@
   margin-right: -60px;
   transition: all 1.5s ease-in-out;
 }
-
 .moveToThird{
   z-index:2;
   margin-top: 80px;
@@ -165,7 +167,6 @@
   margin-right: 0px;
   transition: all 1.5s ease-in-out;
 }
-
 .moveToFourth{
   z-index:1;
   margin-top: 50px;
@@ -174,12 +175,14 @@
   transition: all 1.5s ease-in-out;
 }
 
+/* audio element set */
 #audioElement{
   width: 100%;
   grid-column: 1/2;
   grid-row: 1/2;
 }
 
+/* audio overlay set */
 #audioPlayOverlay{
   width: 2rem;
   height: 2rem;
@@ -192,10 +195,12 @@
   display: none;
 }
 
+/* audio control buttons's wrapper set */
 .audio-controls-wrapper{
   display: inline-block;
   width: 80%;
   justify-content: center;
+  /* I choose position fixed because I want they fixed bottom of the whole screen */
   position: fixed;
   bottom: 30%;
 }
@@ -204,12 +209,13 @@
   display: none;
 }
 
+/* audio control buttons's default set */
 .audio-control-button{
   width: 2rem;
   height: 2rem;
   padding: .1rem;
   border: none;
-  cursor: pointer;
+  cursor: pointer;  /* change mouse pointer to finger */
   background-repeat: none;
   background-color: transparent;
   border-radius: 20%;
@@ -220,30 +226,31 @@
 .audio-control-button:active{
   background-color: rgba(0, 0, 0, 0.1);
 }
-.button-icon{
-  pointer-events: auto;  /* change mouse pointer to finger */
-}
 
+/* play pause button set */
 #playButton{
   background-image: url('./icons/play.png');
   position: fixed;
   bottom: 20%;
-  filter: drop-shadow(0 0 0.5rem red);
+  filter: drop-shadow(0 0 0.5rem var(--col-01));
 }
+/* backward button set */
 #backwardButton{
   background-image: url('./icons/backward.png');
   position: fixed;
   bottom: 20%;
   left: 30%;
-  filter: drop-shadow(0 0 0.5rem red);
+  filter: drop-shadow(0 0 0.5rem var(--col-01));
 }
+/* backward button set */
 #forwardButton{
   background-image: url('./icons/forward.png');
   position: fixed;
   bottom: 20%;
   right: 30%;
-  filter: drop-shadow(0 0 0.5rem red);
+  filter: drop-shadow(0 0 0.5rem var(--col-01));
 }
+/* loop one-loop no-loop button set */
 #loopButton{
   background-size: 1.6rem;
   width: 1.6rem;
@@ -252,15 +259,17 @@
   position: fixed;
   bottom: 20.5%;
   left: 11%;
-  filter: drop-shadow(0 0 0.5rem red);
+  filter: drop-shadow(0 0 0.5rem var(--col-01));
 }
+/* mute unmute button set */
 #muteButton{
   background-image: url('./icons/mute.png');
   position: fixed;
   bottom: 20%;
   right: 10%;
-  filter: drop-shadow(0 0 0.5rem red);
+  filter: drop-shadow(0 0 0.5rem var(--col-01));
 }
+/* shuffle unshuffle button set */
 #shuffleButton{
   background-image: url('./icons/shuffle.png');
   position: fixed;
@@ -269,38 +278,41 @@
   height: 1.6rem;
   top: 10%;
   left: 10%;
-  filter: drop-shadow(0 0 0.5rem red);
+  filter: drop-shadow(0 0 0.5rem var(--col-01));
 }
+/* night shift button set */
 #nightShiftButton{
   background-image: url('./icons/moon.png');
   position: fixed;
   top: 10%;
   right: 10%;
-  filter: drop-shadow(0 0 0.5rem red);
+  filter: drop-shadow(0 0 0.5rem var(--col-01));
 }
 
+/* audio progress bar's default set */
 .audio-progress-bar{
-  /* Reset the default appearance */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border: none;
   height: 0.7rem;
   width: 100%;
-  flex-grow: 1;
   cursor: pointer;
   background-color: var(--col-05);
   box-shadow: 0 1px 2px var(--col-06) outset;
   border-radius: 20px;
 }
-::-moz-progress-bar {
+.audio-progress-bar:hover{
+  transform: scaleY(1.3);  /* raise progress bar height */
+}
+/* audio progress bar set */
+::-webkit-progress-bar {
   background-color: var(--col-05);
   box-shadow: 0 1px 2px var(--col-06) inset;
   border-radius: 20px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) inset;  
 }
-
-::-webkit-progress-bar {
+::-moz-progress-bar {
   background-color: var(--col-05);
   box-shadow: 0 1px 2px var(--col-06) inset;
   border-radius: 20px;
@@ -311,8 +323,14 @@
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) outset;  
   border-radius: 20px;
 }
+::-moz-progress-bar {
+  background: linear-gradient(90deg,var(--col-01), transparent 85%), linear-gradient(90deg, var(--col-05), var(--col-01));
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) outset;  
+  border-radius: 20px;
+}
+/* audio progress value set */
 .progress-red::-webkit-progress-value{
-  background-image: linear-gradient(var(--col-05) 5%,red ,var(--col-05) 95%);
+  background-image: linear-gradient(var(--col-05) 5%, red ,var(--col-05) 95%);
 }
 .progress-yellow::-webkit-progress-value{
   background-image: linear-gradient(var(--col-05) 5%,gold ,var(--col-05) 95%);
@@ -322,15 +340,22 @@
 }
 .progress-blue::-webkit-progress-value{
   background-image: linear-gradient(var(--col-05) 5%,cornflowerblue ,var(--col-05) 95%);
-
+}
+.progress-red::-moz-progress-value{
+  background-image: linear-gradient(var(--col-05) 5%, red ,var(--col-05) 95%);
+}
+.progress-yellow::-moz-progress-value{
+  background-image: linear-gradient(var(--col-05) 5%,gold ,var(--col-05) 95%);
+}
+.progress-green::-moz-progress-value{
+  background-image: linear-gradient(var(--col-05) 5%,limegreen ,var(--col-05) 95%);
+}
+.progress-blue::-moz-progress-value{
+  background-image: linear-gradient(var(--col-05) 5%,cornflowerblue ,var(--col-05) 95%);
 }
 
-.audio-progress-bar:hover{
-  transform: scaleY(1.5);
-}
-
-.timeline-loading{
-  background-image: -moz-repeating-linear-gradient(45deg, var(--col-03) 0% 2%, transparent 2% 4%, red 4%);
+/* .timeline-loading{
+  background-image: -moz-repeating-linear-gradient(45deg, var(--col-03) 0% 2%, transparent 2% 4%, var(--col-01) 4%);
   background-size: 200% 100%;
   animation: loadingAnimation 4s ease-in-out double;
 }
@@ -339,4 +364,4 @@
   100%{
     background-position: 50% 0%;
   }
-}
+} */

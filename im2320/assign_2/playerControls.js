@@ -5,7 +5,6 @@
 let audioElement = document.getElementById("audioElement");
 const audioPlayerOverlay = document.getElementById("audioPlayOverlay");
 const background = document.getElementById("background");
-const TURNLIGHT = document.getElementsByClassName("turnLight");
 const blinder = document.getElementById("blinder");
 
 // the buttons for the controls
