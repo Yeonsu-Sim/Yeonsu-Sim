@@ -161,9 +161,10 @@ function newAudio(music) {
 
 } 
 
+/* move music ball buttons to correct place */
 function moveBalls() {
-  let track = trackList[0];
-  if (track.trackNumber != 0) {
+  let track = trackList[0];  // start with first track
+  if (track.trackNumber != 0) {  // when audio is ended
     for (let i=0; i< musicBalls.length; i++) {
       track.classList.add(movements[i]);
       track.classList.remove(movements[track.trackNumber]);
@@ -171,7 +172,7 @@ function moveBalls() {
       track = track.next;
     }
   }
-  else {
+  else {  // when audio is
     for (let i=1; i<musicBalls.length; i++) {
       track = track.next;
       track.classList.remove(movements[track.trackNumber]);
@@ -565,9 +566,9 @@ window.addEventListener('keydown', (e) => {
     volumeDown();
   else if (e.code == "KeyF")
     fullScreen();
-  else if (e.code == "keyN")
+  else if (e.code == "KeyN")
     shiftLight();
-  else if (e.code == "keyS")
+  else if (e.code == "KeyS")
     shuffle();
 });
 window.onwheel = (e) => {
