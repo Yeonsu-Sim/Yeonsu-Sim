@@ -350,27 +350,20 @@ playButton.addEventListener('keydown', (e) => {
 // the second event we want is clicking on the hero image, a feature popularised by youtube that is now ubiquitous in online media players
 
 
-function forward(munite) {
-  audioElement.currentTime += munite;
+function forward(second) {
+  audioElement.currentTime += second;
 }
-function backward() {
-  audioElement.currentTime -= munite;
+function backward(second) {
+  audioElement.currentTime -= second;
 }
-// function forwarding() {
-//   while(!this.click)
-//     audioElement.currentTime += 1;
-// }
-// function backwarding() {
-//   audioElement.currentTime -= 1;
-// }
-forwardButton.addEventListener('click', forward, 5);
+forwardButton.addEventListener('click', () => { forward(5) });
 forwardButton.addEventListener('keydown', (e) => {
   if (e.code == "Space")
     playPause();
   else if (e.code == "ArrowRight")
     forward(5);
 });
-backwardButton.addEventListener('click', backward, 5);
+backwardButton.addEventListener('click', () => { backward(5) });
 backwardButton.addEventListener('keydown', (e) => {
   if (e.code == "Space")
     playPause();
@@ -434,11 +427,11 @@ loopButton.addEventListener('click', loopUnloop);
 loopButton.addEventListener('keydown', (e) => {
   if (e.code == "Space")
     playPause();
-  else if (e.code == "KeyL")
+  else if (e.code == "KeyR")
     loopUnloop();
 });
 loopButton.addEventListener('keydown', (e) => {
-  if (e.code == "KeyL")
+  if (e.code == "KeyR")
   loopUnloop();
 })
 
@@ -556,11 +549,15 @@ window.addEventListener('keydown', (e) => {
     playPause();
   else if (e.code == "ArrowRight")
     forward(5);
+  else if (e.code == "KeyL")
+    forward(10);
   else if (e.code == "ArrowLeft")
     backward(5);
+  else if (e.code == "KeyJ")
+    backward(10);
   else if (e.code == "KeyM")
     muteUnmute();
-  else if (e.code == "KeyL")
+  else if (e.code == "KeyR")
     loopUnloop();
   else if (e.code == "ArrowUp")
     volumeUp();
