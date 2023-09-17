@@ -64,10 +64,13 @@ console.log("Play Album");
 let initial = true;  // flag of first playing for inhibiting to autoplay
 playAlbum(trackList[0]);  // play music album's first track
 
-/* modify visual things and trackList */
+
+/* PLAY ALBUM */
+
+// modify visual things and trackList
 function playAlbum(music) {
 
-  /* modify visual things of whole screen */
+  // modify visual things of whole screen
   colorImage.src = music.dataset["img"];  // color image
   background.style.backgroundImage = music.dataset["gradient"];  // background image
   musicBalls.forEach(musicBall => {  // background image of progress value
@@ -85,7 +88,7 @@ function playAlbum(music) {
   newAudio(music);  // make new audio element
 }
 
-/* make new audio element and add event listener on it*/
+// make new audio element and add event listener on it
 function newAudio(music) {
 
   // make new audio element of current track
@@ -161,7 +164,7 @@ function newAudio(music) {
 
 } 
 
-/* move music ball buttons to correct place */
+// move music ball buttons to correct place
 function moveBalls() {
   let track = trackList[0];  // start with first track
   if (track.trackNumber != 0) {  // when audio is ended
@@ -183,6 +186,8 @@ function moveBalls() {
 }
 
 
+/* AUDIO ELEMENT */
+
 // next we remove the controls attribute - we do this with JS rather than just not including it in the HTML tag as a fallback
 // this way if the JS doesn't load for whatever reason the player will have the default built in controls
 audioElement.removeAttribute("controls");
@@ -190,60 +195,21 @@ audioElement.removeAttribute("controls");
 // load then they won't show
 document.getElementById("controlsWrapper").style.display = "flex";
 
-// // then we listen for the loadedmetadata event to fire which means we'll be able to access exactly how long the piece of media is
-// // i'm using an arrow function here that updates the progress element's max attribute with the duration of the media
-// // this way when it comes to setting the progress bars value the number matches a percentage of the total duration
-// // audioElement.addEventListener('loadedmetadata', () => {
-// //   progressBar.setAttribute('max', audioElement.duration);
-// // });
 
-// // some mobile devices won't fire a loadedmetadata event so we need a fallback to make sure the attribute is set in these cases - we 
-// // can do this by also running a check whenever playback starts by using the playing event
-// audioElement.addEventListener("playing", () => {
-//   // we can then double check if the attribute has already been set - if not then set it here - ! inside of an if statement flips the 
-//   // truth of what we're checking for - so (progressBar.getAttribute('max')) would check if there's a value and 
-//   // (!progressBar.getAttribute('max')) checks if there is no value - ie false
-//   if (!progressBar.getAttribute('max')){
-//     progressBar.setAttribute('max', audioElement.duration);
-//   }
-// });
+/* MUSIC BALL */
 
-/* LOADING */
-
-// here we're adding some feedback to indicate when the audio is loading - this is pretty similar to our last experiement in that we're 
-// applying an animation via a class. the real difference here is when that class gets added - by listening for the waiting event which 
-// fires when the media is waiting to load we can add the animation to the timeline via the .classList.add() method. when we want to 
-// stop the animation we listen for the canplay event which fires when the media player has buffered enough data to be able to playback the 
-// media then we use the .classList.remove() method - if we instead wanted to wait until it has actually loaded the whole file we could 
-// use the canplaythrough event
-// audioElement.addEventListener("waiting", () => {
-//   progressBar.classList.add("timeline-loading");
-// });
-// audioElement.addEventListener("canplay", () => {
-//   progressBar.classList.remove("timeline-loading");
-// });
-
-/* MEDIA FINSIHED */
-
-// when the media finishes we want to make sure that play icon switches back over from pause to indicate that the user can restart playback
-// audioElement.addEventListener("ended", () => {
-//   playButton.style.backgroundImage = "url('./icons/play.png')";
-//   trackList.shift();
-//   playAlbum(trackList[0]);
-// });
-
+// add 'click' event listener for changing track
 redBall.addEventListener('click', () => {    
-  if (trackList[0] == redBall)
+  if (trackList[0] == redBall)  // don't need to change track
     return;
-  // audioElement.pause();
-  // audioElement.src = "";
-  while (trackList[0] !== redBall) {
+
+  while (trackList[0] !== redBall) {  // remain track order
     if (trackList.length == 1)
       trackList = [redBall];
     else
       trackList.shift();
   }
-  playAlbum(trackList[0]);
+  playAlbum(trackList[0]);  // auto play next track
 
 });
 
@@ -251,8 +217,7 @@ yellowBall.addEventListener('click', () => {
   if (trackList[0] == yellowBall)
     return;
 
-  // audioElement.pause();
-  // audioElement.src = "";
+
   while (trackList[0] !== yellowBall) {
     if (trackList.length == 1)
       trackList = [yellowBall];
@@ -267,8 +232,7 @@ greenBall.addEventListener('click', () => {
   if (trackList[0] == greenBall)
     return;
 
-  // audioElement.pause();
-  // audioElement.src = "";
+
   while (trackList[0] !== greenBall) {
     if (trackList.length == 1)
       trackList = [greenBall];
@@ -283,8 +247,7 @@ blueBall.addEventListener('click', () => {
   if (trackList[0] == blueBall)
     return;
 
-  // audioElement.pause();
-  // audioElement.src = "";
+
   while (trackList[0] !== blueBall) {
     if (trackList.length == 1)
       trackList = [blueBall];
@@ -295,36 +258,32 @@ blueBall.addEventListener('click', () => {
   
 });
 
+
 /* COLOR IMAGE */
+// change width of color image 100% / 45%
 function fullScreen() {
   if (colorImage.style.width == "45%") {
     colorImage.style.width = "100%";
-    colorImage.style.flex = "auto";
+    colorImage.style.flex = "auto";  // fill full screen
     colorImage.style.filter = "drop-shadow(0 0 5rem "+trackList[0].dataset['color']+")";
 }
   else {
     colorImage.style.width = "45%";
-    colorImage.style.flex = "inherit";
+    colorImage.style.flex = "inherit";  // remain ratio of image
     colorImage.style.filter = "drop-shadow(10px 10px 10px rgba(0,0,0, 0.5))"
   }
 }
+// add 'click' event listener for full screen function
 colorImage.addEventListener('click', fullScreen);
 
 
 /* PLAY/PAUSE */
 
-// we can use the .play() and .pause() methods on our media element to play and pause playback - because I want this to be triggered by 
-// two different events (see below) i'm going to write it as a seperate function 
-// by combining play and pause into the same function i'm able to make sure it does what i want - if the media is already playing i only 
-// ever want use .pause() (as pausing an already paused audio doesn't really make sense) 
-// the same goes if the media is paused or stopped i only want use .play()
+// play / pause audio element
 function playPause(){
-  // the following if statement checks to see if the media is currently paused OR if the media has finshed playing - || inside of an if 
-  // statement like this is how we write an OR conditional, if either of these things are true it'll trigger the block of code
-  // the reason we check for both is that when the audio finishes playing it'll be in an ended state not a paused state
 
   if (audioElement.paused || audioElement.ended) {
-    // if it isn't already playing make it playㅡ
+    // if it isn't already playing make it play
     audioElement.play();
     // then make sure the icon on the button changes to pause indicating what it does if you click it
     playButton.style.backgroundImage = "url('./icons/pause.png')";
@@ -336,134 +295,131 @@ function playPause(){
     }
 
 }
-// now we have our function we need to attach it to two seperate events, the first is probably obvious - clicking on the play button
+// add 'click' event listener for play / pause function
 playButton.addEventListener('click', playPause);
-playButton.addEventListener('keydown', (e) => {
-  if (e.code == "Space")
-    playPause();
-});
-
-// window.addEventListener('onkeydown', (e) => {
-//   if (e.code == "Space")
-//     playPause();
-// });
-
-// the second event we want is clicking on the hero image, a feature popularised by youtube that is now ubiquitous in online media players
 
 
+/* FORWARD/BACKWARD */
+
+// move forward
 function forward(second) {
   audioElement.currentTime += second;
 }
+// move backward
 function backward(second) {
   audioElement.currentTime -= second;
 }
+// add 'click', 'keydown' event listener for forward function
 forwardButton.addEventListener('click', () => { forward(5) });
 forwardButton.addEventListener('keydown', (e) => {
-  if (e.code == "Space")
-    playPause();
-  else if (e.code == "ArrowRight")
+  if (e.code == "ArrowRight")
     forward(5);
 });
+// add 'click', 'keydown' event listener for backward function
 backwardButton.addEventListener('click', () => { backward(5) });
 backwardButton.addEventListener('keydown', (e) => {
-  if (e.code == "Space")
-    playPause();
-  else if (e.code == "ArrowLeft")
+  if (e.code == "ArrowLeft")
     backward(5);
 });
 
 
+/* MUTE UNMUTE */
+
+// change state of audio to mute / unmute
 function muteUnmute() {
-  if (audioElement.volume == 0){
+  if (audioElement.volume == 0){  // unmute when it's volume is 0
     audioElement.muted = false;
-    audioElement.volume = 1;
-    muteButton.muted = false;
+    audioElement.volume = 1;  // set volume level highest
+    muteButton.muted = false;  // store data for keep unmuted state when track changed
     muteButton.style.backgroundImage = "url('./icons/mute.png')";
     muteButton.style.backgroundPosition = "0px";
   }
   else if (!audioElement.muted){
     audioElement.muted= true;
-    muteButton.muted = true;
+    muteButton.muted = true;  // store data for keep muted state when track changed
     muteButton.style.backgroundImage = "url('./icons/unmute.png')";
-    muteButton.style.backgroundPosition = "-1.4px";
+    muteButton.style.backgroundPosition = "-1.4px";  // just for both icon have same location
   }
   else { 
     audioElement.muted = false;
-    muteButton.muted = false;
+    muteButton.muted = false;  // store data for keep unmuted state when track changed
     muteButton.style.backgroundImage = "url('./icons/mute.png')";
     muteButton.style.backgroundPosition = "0px";
   }
-
-
 }
+// add 'click', 'keydown' event listener for mute / unmute function
 muteButton.addEventListener('click', muteUnmute);
-muteButton.addEventListener('keydown', (e) => {
-  if (e.code == "Space")
-    playPause();
-  else if (e.code == "KeyM")
-    muteUnmute();
-});
 muteButton.addEventListener('keydown', (e) => {
   if (e.code == "KeyM")
     muteUnmute();
-})
+});
 
 
+/* LOOP UNLOOP */
+
+// change looped state for helping updating track list
 function loopUnloop() {
+  // when it's in looped state
   if (loopButton.looped == "loops") {
     loopButton.looped = "start-no-loop";
     loopButton.style.backgroundImage = "url('./icons/noLoop.png')";
   }
+  // when it's in no-loop state
   else if (loopButton.looped == "start-no-loop" || loopButton.looped == "in-no-loop" || loopButton.looped == "end-no-loop") {
     loopButton.looped = "one-loop";
     loopButton.style.backgroundImage = "url('./icons/oneLoop.png')";
   }
+  // when it's in one-loop state
   else {
     loopButton.looped = "loops";
     loopButton.style.backgroundImage = "url('./icons/loop.png')";
   }
 }
-
+// add 'click', 'keydown' event listener for loop / unloop function
 loopButton.addEventListener('click', loopUnloop);
 loopButton.addEventListener('keydown', (e) => {
-  if (e.code == "Space")
-    playPause();
-  else if (e.code == "KeyR")
+  if (e.code == "KeyR")  // 'R'epeat
     loopUnloop();
 });
-loopButton.addEventListener('keydown', (e) => {
-  if (e.code == "KeyR")
-  loopUnloop();
-})
 
+
+/* VOLUME UP / DOWN */
+
+// volume up (10 step)
 function volumeUp() {
   if (audioElement.volume <= 0.9)
     audioElement.volume += 0.1;
-  if (audioElement.volume != 0 && audioElement.muted)
+  if (audioElement.volume != 0 && audioElement.muted)  // when it's volume is 0(muted)
     muteUnmute();
   muteButton.volume = audioElement.volume;
 }
+// volume down (10 step)
 function volumeDown() {
   if (audioElement.volume >= 0.1)
     audioElement.volume -= 0.1;
-  if (audioElement.volume < 0.1 && !audioElement.muted)
+  if (audioElement.volume < 0.1 && !audioElement.muted)  // when it's volume is not 0 (unmuted)
     muteUnmute();
   muteButton.volume = audioElement.volume;
   }
-
+// volume up / down by scrolling
 function volume(e) {
-  if (e.target.id == "progressBar")
+  if (e.target.id == "progressBar")  // prohibit function overlap
     return;
-  let scale = audioElement.volume + e.deltaY / 8 * 0.1;
-  // Restrict scale
-  scale = clampZeroOne(scale);
+  // get the degree of mose wheel movement
+  let scale = audioElement.volume + e.deltaY / 8 * 0.1;  // split level to 10 steps
+  scale = clampZeroOne(scale);  // restrict scale (0~1)
 
+  // when muted state needs to be changed
   if ((scale == 0 && !audioElement.muted) || (scale != 0 && audioElement.muted))
     muteUnmute();
   audioElement.volume = scale;
-  muteButton.volume = audioElement.volume;
+  muteButton.volume = audioElement.volume;  // store for keeping volume level when track changed
 }
 
+
+/* NIGHT SHIFT */
+
+// shift background color fot darkening / brightening
 function shiftLight() {
   if (nightShiftButton.light != "moon") {
     nightShiftButton.light = "moon";
@@ -476,77 +432,81 @@ function shiftLight() {
     nightShiftButton.style.backgroundImage = "url('./icons/moon.png')";
   }
 }
-
+// add 'click', 'keydown' event listener for night shift function
 nightShiftButton.addEventListener('click', shiftLight);
 nightShiftButton.addEventListener('keydown', (e) => {
-  if (e.code == "Space")
-    playPause();
-  else if (e.code == "KeyN")
+  if (e.code == "KeyN")
     shiftLight();
 });
-nightShiftButton.addEventListener('keydown', (e) => {
-  if (e.code == "KeyN")
-  shiftLight();
-})
 
-let map = new Map();
 
+/* SHUFFLE UNSHUFFLE */
+
+// shuffle track list order
 function shuffle() {
   if (!shuffleButton.shuffled) {
     shuffleButton.shuffled = true;
     shuffleButton.style.backgroundImage = "url('./icons/unshuffle.png')";
 
-    let track = trackList[0];
-    trackList = [track];
+    let map = new Map();  // define a Map structure for mixing order of track list
+    let track = trackList[0];  // start with first track
+    trackList = [track];  // keep playing current track
 
-    for (let i=0; i<musicBalls.length-1; i++) {
-      let randInt = getRandomInt(100);
-      while (map.has(randInt))
+    for (let i=0; i<musicBalls.length-1; i++) {  // mix order of rest of tracks
+      let randInt = getRandomInt(100);  // make random int between 0 to 100
+      while (map.has(randInt))  // not allow duplicate number
         randInt = getRandomInt(100);
   
-      map.set(randInt, track.next);
-      track = track.next;
+      map.set(randInt, track.next);  // give random number to rest of tracks
+      track = track.next;  // move to next track
     }
-    
   
-    track = trackList[0];
+    track = trackList[0];  // reset to current track
     while (map.size != 0) {
       let biggest = -1;
       map.forEach((musicBall,num) => {
         biggest = Math.max(num,biggest);
       })
-      track.next = map.get(biggest);
-      track = track.next;
+      track.next = map.get(biggest);  // track with bigger random number is played first
+      track = track.next;  // update the order of track list
       map.delete(biggest);
     }
-    track.next = trackList[0];
+    track.next = trackList[0];  // update the next track of current track
   }
   else {
     shuffleButton.shuffled = false;
     shuffleButton.style.backgroundImage = "url('./icons/shuffle.png')";
+
+    // reset track list to previous order
     redBall.next = yellowBall;
     yellowBall.next = greenBall;
     greenBall.next = blueBall;
     blueBall.next = redBall;
   }
-  moveBalls();  
+  moveBalls();  // move balls to visualize shuffled / unshuffled result
 
 }
+// add 'click', 'keydown' event listener for shuffle / unshuffle function
 shuffleButton.addEventListener('click', shuffle);
-shuffleButton.addEventListener('keydown', (e) => {
-  if (e.code == "Space")
-    playPause();
-  else if (e.code == "KeyS")
-    shuffle();
-});
 shuffleButton.addEventListener('keydown', (e) => {
   if (e.code == "KeyS")
     shuffle();
-})
+});
 
 
+/* SHOURCUT */
+
+// add 'keydown' event listener for shortcuting in whole window
 window.addEventListener('keydown', (e) => {
-  if (e.code == "Space" || e.code == "KeyK")
+  if (e.code == "Space") {  // prohibit function overlap
+    if (e.target.id == "playButton" || e.target.id == "forwardButton" || e.target.id == "backwardButton" || 
+        e.target.id == "muteButton" || e.target.id == "loopButton" || e.target.id == "shuffleButton" || 
+        e.target.id == "nightShiftButton")
+      return;
+    else
+      playPause();
+  }
+  else if (e.code == "KeyK")
     playPause();
   else if (e.code == "ArrowRight")
     forward(5);
@@ -576,95 +536,46 @@ window.onwheel = (e) => {
 };
 
 
-// document.getElementsByClassName("musicBall").addEventListener('keydown', (e) => {
-//   if (e.code == "Space") 
-//     playPause();
-// });
-
-// this feature is unfinished in my code - while it works it has no signifiers to let users know they can do this by clicking the audio
-// there is already an element appropriately placed as a signifier, the <img> with the id of audioPlayerOverlay however its CSS is currently
-// set to display: none - try to complete this feature by doing the following 
-// first you'll need to remove display: none from its css ruleset
-// then you'll need to add two new statements to the playPause() function above - each will need to first find the correct element using the 
-// document.getElementById() and then update that element's .style.display property to equal either "block" or "none" depending on the context
-// if done correctly the play overlay will only appear over the audio if paused, otherwise it should disappear when playing
-
-
 /* TIMELINE */
 
-// there's two different things we want to do with our timeline - update the progress bar to display how much has already played and let the user 
-// click the progress bar to scrub the audio to a specific place in the audio
-// to update the progress bar we need to listen for the timeupdate event which is fired everytime the current audio time is updated - when the audio 
-// is playing this repeatedly fires at a constant rate
-audioElement.addEventListener('timeupdate', () => {
-  // this statement is simple - we update the progress bar's value attribute with the currentTime property of the audio, because timeupdate runs everytime
-  // currentTime is changed it'll update both as the audio plays and if we were to skip or stop the audio
-  progressBar.value = audioElement.currentTime;
-});
-
-// the simplest version of scrubbing would be to update the audio's currentTime when the user clicks the timeline - however due to the interaction pattern 
-// established by youtube we should also account for a slightly different expression of user agency. the code below will work with a simple click on the 
-// timeline but will also allow for a user to drag their mouse on the timeline to continuously update currentTime and only end scrubbing when they release the 
-// mouse button. implementing this will take some more complex use of event listeners but i'll do my best to explain the design and technical implementation
-
-// first thing we want to do is write a function that will take the current position of the the mouse in relation to the timeline and use it to change the 
-// currentTime property of the audio element. each time this runs we'll need to know the position of the mouse so which we'll do using the event passed to it 
-// by the eventlistener - to access this we need to set it as a parameter, i've used the name e but it can be called whatever you like
+// update current time of audio by mouse click
 function scrubToTime(e){
-  // this statement has a lot going on so let's step through each part:
-  // the first thing we want to work out is the distance between the left side of the progress bar and the mouses current position - if we were just building 
-  // an interaction to work when the mouse is over the bar we could take this from the event, however as we want this to also work when we've held the mouse 
-  // down and moved it somewhere else on the page we need to work this out manually
-  // e.clientX is the cursors current distance from the left edge of the page
-  // we then want to minus (progressBar.getBoundingClientRect().left + window.scrollX) from this distance to account for any gap between the left edge of the 
-  // page and the start of the progress bar
-  // audioElement.currentTime is the current position in the media file - we are setting it here to change the playback time
-  // we then need to find a normalised 0-1 value based on how far along the bar the cursor is - the idea is that if i click the left most side it should return 0
-  // and if i click the right most side it should return 1 - we get this value by dividing x by the total width of the progressBar
-  // the value is then fed into our clampZeroOne() function - this is accounting for if our mouse is further left or further right than the ends of the progress bar
-  // it works by essentially making the value always equal 1 if it is over 1 or always making it 0 if under 0 - this is commonly called a clamp, we're only allowing
-  // a value to be in a certain range
-  // finally we're using this clamped value to multiply with total duration of our audio thus working out where we should scrub to
+  // get the degree of horizontal mouse movement
   let x = e.clientX - (progressBar.getBoundingClientRect().left + window.scrollX);
+  // update current time
   audioElement.currentTime = clampZeroOne(x / progressBar.offsetWidth) * audioElement.duration;
 }
-
-// the click event fires only if the user presses the mouse down and then releases it on the same element. we can allow for a wider range of interactions by
-// further breaking this down this into its discrete parts and listening to both the mousedown and mouseup events seperately
-
+// add 'mousedown' event listener for scrub to time function
 progressBar.addEventListener('mousedown', scrubToTime);
 progressBar.addEventListener('mousedown', (e) => {
-  // the behaviour here is to listen to the mousemove event (fired when the user moves their mouse) when the click is held down but then to stop listening to that 
   // event when the mouse click is released
   window.addEventListener('mousemove', scrubToTime);
   window.addEventListener('mouseup', () => {
     window.removeEventListener('mousemove', scrubToTime);
   });
 });
-
+// update current time of audio by mouse wheel
 function slideToTime(e) {
-  let scale = audioElement.currentTime + e.deltaY / 8 * 0.1;
-  // Restrict scale
+  // get the degreee of mouse wheel movement
+  let scale = audioElement.currentTime + e.deltaY / 8 * 0.1; 
+  // Restrict scale between 0 to duration of audio
   audioElement.currentTime = clampZeroX(audioElement.duration, scale);
-
 }
+// add 'wheel' event listener for slide to time function
 progressBar.addEventListener('wheel',slideToTime);
 
 
 /* HELPER FUNCTIONS */
 
+// get random int between 0 to input
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
-
+// restrick input between 0 to 1
 function clampZeroOne(input){
   return Math.min(Math.max(input, 0), 1);
 }
-
+// restrick second input between 0 to first input
 function clampZeroX(x, input){
   return Math.min(Math.max(input, 0), x);
-}
-
-function logEvent(e){
-  console.log(e);
 }
