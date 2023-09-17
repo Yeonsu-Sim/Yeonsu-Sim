@@ -4,124 +4,134 @@
 // this is the audio itself
 let audioElement = document.getElementById("audioElement");
 const audioPlayerOverlay = document.getElementById("audioPlayOverlay");
+
+// the elements for the background
 const background = document.getElementById("background");
 const blinder = document.getElementById("blinder");
 
 // the buttons for the controls
 const AUDIOCONTROLBUTTON = document.getElementsByClassName("audio-control-button");
 const playButton = document.getElementById("playButton");
-// const stopButton = document.getElementById("stopButton");
 const forwardButton = document.getElementById("forwardButton");
 const backwardButton = document.getElementById("backwardButton");
 const loopButton = document.getElementById("loopButton");
-loopButton.looped = "loops";
 const muteButton = document.getElementById("muteButton");
-muteButton.muted = false;
-muteButton.volume = 1;
 const nightShiftButton = document.getElementById("nightShiftButton");
-nightShiftButton.light = "sun";
 const shuffleButton = document.getElementById("shuffleButton");
-shuffleButton.shuffled = false;
 
 // the progress element
 const progressBar = document.getElementById("progressBar");
-// the hero image
+// the color image
 const colorImage = document.getElementById("colorImage");
 
-const MUSICBALL = document.getElementsByClassName("musicBall");
+// the music ball button elements
 const redBall = document.getElementById("redBall");
 const yellowBall = document.getElementById("yellowBall");
 const greenBall = document.getElementById("greenBall");
 const blueBall = document.getElementById("blueBall");
+
+// initialize the audio control buttons set
+loopButton.looped = "loops";
+muteButton.muted = false;
+muteButton.volume = 1;
+nightShiftButton.light = "sun";
+shuffleButton.shuffled = false;
+
+// initialize the music ball buttons set
 redBall.next = yellowBall;
-redBall.trackNumber = 1;
 yellowBall.next = greenBall;
-yellowBall.trackNumber = 2;
 greenBall.next = blueBall;
-greenBall.trackNumber = 3;
 blueBall.next = redBall;
+redBall.trackNumber = 1;
+yellowBall.trackNumber = 2;
+greenBall.trackNumber = 3;
 blueBall.trackNumber = 4 ;
 
+// define a 'musicBall' list contains all music ball
 const musicBalls = [redBall, yellowBall, greenBall, blueBall];
+
+// define a 'movement' list contains all movement of 'musicBalls' element
 const movements = ["moveToFirst","moveToSecond","moveToThird","moveToFourth"];
+
+// initialize list contains listed music balls
 let trackList = [];
 musicBalls.forEach(musicBall => {
   trackList.push(musicBall);
 });
 
+// start playing music album
 console.log("Play Album");
-let initial = true;
-playAlbum(trackList[0]);
+let initial = true;  // flag of first playing for inhibiting to autoplay
+playAlbum(trackList[0]);  // play music album's first track
 
-/*  */
+/* modify visual things and trackList */
 function playAlbum(music) {
 
-  colorImage.src = music.dataset["img"];
-  background.style.backgroundImage = music.dataset["gradient"];
-
-  musicBalls.forEach(musicBall => {
+  /* modify visual things of whole screen */
+  colorImage.src = music.dataset["img"];  // color image
+  background.style.backgroundImage = music.dataset["gradient"];  // background image
+  musicBalls.forEach(musicBall => {  // background image of progress value
     progressBar.classList.remove(musicBall.dataset["progress"]);
   });
   progressBar.classList.add(music.dataset["progress"]);
-
-  background.classList.add("turnLight");
-
-  // TURNLIGHT.style.backgroundImage = "linear-gradient(var(--col-02), var(--col-05) 10%, var(--col-02), var(--col-05) 90%, var(--col-02))";
-  // background.classList.add("TURNLIGHT");
-  // backgroundTURNLIGHT.backgroundImage = music.dataset["gradient"];
-  // background.classList.remove("TURNLIGHT");
-
   progressBar.value = "0";
 
-  for (let i = 0; i< AUDIOCONTROLBUTTON.length; i++)
+  for (let i = 0; i< AUDIOCONTROLBUTTON.length; i++)  // shadow color of audio buttons
     AUDIOCONTROLBUTTON[i].style.filter = "drop-shadow(0 0 0.5rem "+music.dataset["color"]+")";
   
-  moveBalls();
+  moveBalls();  // move balls's location to correct place
   
-  audioElement.src="";
-  newAudio(music);
-
+  audioElement.src="";  // remove previous audio source for prohibiting audio overlap
+  newAudio(music);  // make new audio element
 }
 
-/*  */
+/* make new audio element and add event listener on it*/
 function newAudio(music) {
 
+  // make new audio element of current track
   audioElement = new Audio(music.dataset["src"]);
 
+  // remain previous audio control set
   if (muteButton.muted) {
     audioElement.muted = true;
   }
   audioElement.volume = muteButton.volume;
 
+  // add 'timeupdate' event listener for updating current time of progress value
   audioElement.addEventListener('timeupdate', () => {
     progressBar.value = audioElement.currentTime;
   });
 
+  // add 'loadedmetadata' event listener for auto-playing
   audioElement.addEventListener('loadedmetadata', () => {
-    progressBar.setAttribute('max', audioElement.duration);
+    progressBar.setAttribute('max', audioElement.duration);  // set duration of progress bar
+    
+    // set timeout for auto-playing
     setTimeout(() => {
       if (initial)
-        initial = false;
+        initial = false;  // prohibit auto-playing when it's the first time to play music album
       else {
-        audioElement.play();
+        audioElement.play();  // auto-play
         playButton.style.backgroundImage = "url('./icons/pause.png')";
       }
 
-      if (loopButton.looped == "end-no-loop" && trackList.length == 1){
-        audioElement.pause();
+      if (loopButton.looped == "end-no-loop"){
+        audioElement.pause();  // prohibit auto-playing when it's end of track with no loop
         playButton.style.backgroundImage = "url('./icons/play.png')";
-        loopButton.looped = "one-loop";
+        loopButton.looped = "one-loop";  // change looped state to 'one-loop'
         loopButton.style.backgroundImage = "url('./icons/oneLoop.png')";
       }
-    },1500);
+    },1500);  // after 1.5 second
   });
 
+  // add 'ended' event listener for updating track list and keep playing
   audioElement.addEventListener("ended", () => {
     playButton.style.backgroundImage = "url('./icons/play.png')";
 
-    audioElement.src = "";
-    if (loopButton.looped == "one-loop") {
+    audioElement.src = "";  // remove previous audio source for prohibiting audio overlap
+    if (loopButton.looped == "one-loop") {  // no track list updating
     } 
+    // add tracks for making length of track list same as the number of music balls
     else if (loopButton.looped == "start-no-loop") {
       loopButton.looped = "in-no-loop";
       while (trackList.length != musicBalls.length) {
@@ -133,18 +143,19 @@ function newAudio(music) {
       if (trackList.length > 1)
         trackList.shift();
       else {
-        loopButton.looped = "end-no-loop";
+        loopButton.looped = "end-no-loop";  // change looped state when it's last track
       }
     }
     else if (loopButton.looped == "loops") {
       while (trackList.length != musicBalls.length) {
         trackList.push(trackList[(trackList.length)-1].next);
       }
+      // track list is a queue structure (first-in first-out)
       trackList.push(trackList[0]);
       trackList.shift();
     }
 
-    playAlbum(trackList[0]);
+    playAlbum(trackList[0]);  // playing next track
 
   });
 
