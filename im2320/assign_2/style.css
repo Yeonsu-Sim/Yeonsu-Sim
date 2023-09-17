@@ -96,6 +96,9 @@
     farthest-corner at 40% 40%,
     mistyrose, rgb(255, 91, 91) 60%, white 80%);
 }
+#redBall:active{
+  transform: scale(1.5);
+}
 #yellowBall{
   background-image: radial-gradient(
     farthest-corner at 40% 40%,
@@ -106,6 +109,9 @@
   background-image: radial-gradient(
     farthest-corner at 40% 40%,
     floralwhite, rgb(255, 228, 78) 60%, white 80%);
+}
+#yellowBall:active{
+  transform: scale(1.5);
 }
 #greenBall{
   background-image: radial-gradient(
@@ -118,6 +124,9 @@
     farthest-corner at 40% 40%,
     honeydew, rgb(80, 219, 80) 60%, white 80%);
 }
+#greenBall:active{
+  transform: scale(1.5);
+}
 #blueBall{
   background-image: radial-gradient(
   farthest-corner at 40% 40%,
@@ -128,6 +137,9 @@
   background-image: radial-gradient(
   farthest-corner at 40% 40%,
   lightcyan, rgb(139, 175, 241) 60%, white 80%);
+}
+#blueBall:active{
+  transform: scale(1.5);
 }
 
 .moveToFirst{
@@ -311,6 +323,10 @@
 .progress-blue::-webkit-progress-value{
   background-image: linear-gradient(var(--col-05) 5%,cornflowerblue ,var(--col-05) 95%);
 
+}
+
+.audio-progress-bar:hover{
+  transform: scaleY(1.5);
 }
 
 .timeline-loading{

@@ -59,7 +59,7 @@ function playAlbum(music) {
 
   colorImage.src = music.dataset["img"];
   background.style.backgroundImage = music.dataset["gradient"];
-  
+
   musicBalls.forEach(musicBall => {
     progressBar.classList.remove(musicBall.dataset["progress"]);
   });
@@ -448,6 +448,8 @@ function volumeDown() {
   }
 
 function volume(e) {
+  if (e.target.id = "progressBar")
+    return;
   let scale = audioElement.volume + e.deltaY / 8 * 0.1;
   // Restrict scale
   scale = clampZeroOne(scale);
@@ -632,6 +634,13 @@ progressBar.addEventListener('mousedown', (e) => {
   });
 });
 
+function slideToTime(e) {
+  let scale = audioElement.currentTime + e.deltaY / 8 * 0.1;
+  // Restrict scale
+  audioElement.currentTime = clampZeroX(audioElement.duration, scale);
+
+}
+progressBar.addEventListener('wheel',slideToTime);
 
 
 /* HELPER FUNCTIONS */
@@ -642,6 +651,10 @@ function getRandomInt(max) {
 
 function clampZeroOne(input){
   return Math.min(Math.max(input, 0), 1);
+}
+
+function clampZeroX(x, input){
+  return Math.min(Math.max(input, 0), x);
 }
 
 function logEvent(e){
