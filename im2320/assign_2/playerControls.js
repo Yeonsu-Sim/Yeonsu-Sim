@@ -448,7 +448,7 @@ function volumeDown() {
   }
 
 function volume(e) {
-  if (e.target.id = "progressBar")
+  if (e.target.id == "progressBar")
     return;
   let scale = audioElement.volume + e.deltaY / 8 * 0.1;
   // Restrict scale
@@ -463,7 +463,7 @@ function volume(e) {
 function shiftLight() {
   if (nightShiftButton.light != "moon") {
     nightShiftButton.light = "moon";
-    blinder.style.backgroundColor = "rgba(0,0,0,0.5";
+    blinder.style.backgroundColor = "rgba(0,0,0,0.25";
     nightShiftButton.style.backgroundImage = "url('./icons/sun.png')";
   }
   else {
