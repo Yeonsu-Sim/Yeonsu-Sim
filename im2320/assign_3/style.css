@@ -1,0 +1,24 @@
+/*  Default set */
+*{
+    box-sizing: border-box;
+    background-origin: border-box;
+    margin: 0;
+}
+
+.balloon_wrapper {
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-color: lightblue;
+}
+
+.balloon {
+    position:absolute;
+    width:7%;
+}
+
+/* .up {
+    transition-property: top;
+    transition-duration:3s;
+    transition-timing-function: ease;
+} */
