@@ -5,6 +5,12 @@
     margin: 0;
 }
 
+img {
+    cursor: grab;
+    /* -webkit-user-drag: none; */
+    /* -moz-user-drag: none; */
+}
+
 .balloon_wrapper {
     position:absolute;
     width:100%;
