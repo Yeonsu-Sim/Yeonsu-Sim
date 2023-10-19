@@ -3,6 +3,7 @@
     box-sizing: border-box;
     background-origin: border-box;
     margin: 0;
+    overflow: hidden;
 }
 
 img {
