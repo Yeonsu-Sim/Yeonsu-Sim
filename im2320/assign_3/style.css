@@ -20,6 +20,7 @@ img {
 .balloon {
     position:absolute;
     width:7%;
+    animation: swing 1.5s infinite alternate;
 }
 
 /* set default size and position */
@@ -47,5 +48,14 @@ img {
     width:15%;
     left:40%;
     bottom:30%;
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(-10deg);
+    }
+    100% {
+        transform: rotate(10deg);
+    }
 }
 

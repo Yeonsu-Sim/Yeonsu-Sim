@@ -15,8 +15,10 @@ let obj;
 // set each balloon to initial position
 for (let i=0; i<movable.length; i++) {
     let amount = 4+i*7;
-    if (i < 13)
+    if (i < 13) {
         movable[i].style.left = `${amount}%`;
+        movable[i].style.top = "10px"
+    }
     movable[i].style.zIndex = i;
 }
 
@@ -87,7 +89,7 @@ function goUp() {
     let top = obj.style.top.slice(0,-2);
     let time = top*10;
     obj.style.transition = "top "+time+"ms ease";
-    obj.style.top = "0px";
+    obj.style.top = "10px";
 }
 
 function up() {
