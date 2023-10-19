@@ -50,6 +50,7 @@ img {
     width:15%;
     left:40%;
     bottom:30%;
+    animation: zoom 0.6s infinite alternate;
 }
 
 /* For rich visual change */
@@ -61,4 +62,8 @@ img {
         transform: rotate(10deg);
     }
 }
-
+@keyframes zoom {
+    100% {
+        transform: scale(1.1);
+    }
+}
