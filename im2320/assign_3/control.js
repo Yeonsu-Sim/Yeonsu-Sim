@@ -23,7 +23,7 @@ window.onmousedown = function(event) {
       y = event.offsetY;
       obj = event.target;
       setZ();
-      object.style.transition = null;
+      return false;
     }
 };
 
@@ -31,10 +31,9 @@ window.onmousemove = function(event) {
     if (isDown) {
         obj.style.left = event.clientX - x + 'px';
         obj.style.top  = event.clientY - y + 'px';
-
-      event.stopPropagation();
+        obj.style.transition = null;
         return false;
-      }
+    }
 };
 
 window.onmouseup = function(event) {
@@ -58,5 +57,4 @@ function setZ() {
         balloon.style.zIndex = otherIndex-1;
     });
     obj.style.zIndex = balloons.length-1;
-    return false;
 }
