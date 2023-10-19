@@ -7,7 +7,7 @@
 
 img {
     position:absolute;
-    cursor: grab;
+    cursor: grab;  /* To encourage users to drag images */
 }
 
 #background {
@@ -15,8 +15,10 @@ img {
     width:100%;
     height:100%;
     z-index:-1;
+    cursor: default;  /* Let users know that the background image doesn't have any functionality */
 }
 
+/* set default size */
 .balloon {
     position:absolute;
     width:7%;
@@ -50,6 +52,7 @@ img {
     bottom:30%;
 }
 
+/* For rich visual change */
 @keyframes swing {
     0% {
         transform: rotate(-10deg);
