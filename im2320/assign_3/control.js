@@ -27,7 +27,6 @@ function setXY(balloon, e) {
     balloon.style.left = `${x}px`
     balloon.style.top = `${y}px`;
     balloon.style.transition = null;
-    goUp();
 }
 
 function goUp() {
@@ -38,6 +37,11 @@ function goUp() {
 }
 
 function setZ() {
-    console.log(this.style.zIndex);
-
+    let index = this.style.zIndex;
+    Array.from(balloons).forEach(balloon => {
+        let otherIndex = balloon.style.zIndex;
+        if (otherIndex > index)
+        balloon.style.zIndex = otherIndex-1;
+    });
+    this.style.zIndex = balloons.length-1;
 }
