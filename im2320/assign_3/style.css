@@ -26,6 +26,9 @@ img {
     animation: swing 1.5s infinite alternate;
 }
 
+.cloud {
+    animation: float 3s infinite alternate;
+}
 /* set default size and position */
 #cloud1 {
     width:30%;
@@ -66,5 +69,13 @@ img {
 @keyframes zoom {
     100% {
         transform: scale(1.1);
+    }
+}
+@keyframes float {
+    0% {
+        transform:translateX(0%);
+    }
+    100% {
+        transform:translateX(10%);
     }
 }
