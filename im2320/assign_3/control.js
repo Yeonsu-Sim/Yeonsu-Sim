@@ -54,9 +54,9 @@ window.onmousedown = function(event) {
 
 window.onmousemove = function(event) {
     if (isDown) {  // refresh target's location by using offset coordination
+        obj.style.transition = null;  // remove transition when user want to drag
         obj.style.left = event.clientX - x + "px";
         obj.style.top  = event.clientY - y + "px";
-        obj.style.transition = null;  // remove transition when user want to drag
         return false;
     }
 };
@@ -110,12 +110,14 @@ function up() {
 // fall into the ground
 function down() {
     let top = obj.style.top.slice(0,-2);
-    let floor = Math.floor(window.innerHeight*0.35);
-    let distance = floor - top;
-    if (top < floor) {  // only when target is not on the ground
+    let height = window.innerWidth*0.115;
+    let flat = window.innerHeight*0.7 - height;
+    let distance = flat - top - height;
+    let time = distance*5;
+
+    if (distance > 0) {  // only when target is not on the ground
         // to make consistent time
-        let time = distance*5;
         obj.style.transition = "top "+time+"ms ease-in";
-        obj.style.top = floor+"px";
+        obj.style.top = flat-height+"px";
     }
 }
