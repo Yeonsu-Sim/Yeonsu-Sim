@@ -1,6 +1,6 @@
 # Interactive-Media
 
-### 🫀 RMIT Lecture
+### 🫀 RMIT Univ Lecture
 
 🐥 [Assignment1](https://yeonsu-sim.github.io/im2320/assign_1/)
 <br>
